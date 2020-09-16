@@ -1,0 +1,7 @@
+C:\Users\320105005\source\repos\visit-case-s21b6\Sender\bin\Debug\Sender.exe.config
+C:\Users\320105005\source\repos\visit-case-s21b6\Sender\bin\Debug\Sender.exe
+C:\Users\320105005\source\repos\visit-case-s21b6\Sender\bin\Debug\Sender.pdb
+C:\Users\320105005\source\repos\visit-case-s21b6\Sender\obj\Debug\Sender.csprojAssemblyReference.cache
+C:\Users\320105005\source\repos\visit-case-s21b6\Sender\obj\Debug\Sender.csproj.CoreCompileInputs.cache
+C:\Users\320105005\source\repos\visit-case-s21b6\Sender\obj\Debug\Sender.exe
+C:\Users\320105005\source\repos\visit-case-s21b6\Sender\obj\Debug\Sender.pdb
