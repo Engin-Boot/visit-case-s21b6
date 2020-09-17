@@ -24,7 +24,6 @@ namespace VisitorCounter.Sender
                 string JsonString = JsonSerializer.Serialize(entry);
                 Console.WriteLine(JsonString);
             }
-            Console.ReadKey();
 
 
 

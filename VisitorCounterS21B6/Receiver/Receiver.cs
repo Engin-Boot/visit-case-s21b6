@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 
 namespace VisitorCounter.Receiver
 {
@@ -27,93 +28,118 @@ namespace VisitorCounter.Receiver
         private static void ConsolePipeReader()
         {
             Console.WriteLine("In pipe");
-            //string inputFromPipe;
-            //int AddToBuffer = 0;
-            //List<string> TempMessageBuffer = new List<string>();
-
-            //while ((inputFromPipe = Console.ReadLine()) != null)
-            //{
-            //    if (ListHolder.MuTexLock.WaitOne())
-            //    {
-            //        if (AddToBuffer == 1)
-            //        {
-            //            ListHolder.MessageHolder.AddRange(TempMessageBuffer);
-            //            TempMessageBuffer.Clear();
-            //            AddToBuffer = 0;
-            //        }
-            //        ListHolder.MessageHolder.Add(inputFromPipe);
-            //        ListHolder.MuTexLock.ReleaseMutex();
-            //    }
-            //    else
-            //    {
-            //        AddToBuffer = 1;
-            //        TempMessageBuffer.Add(inputFromPipe);
-            //    }
+            string inputFromPipe;
+            int AddToBuffer = 0;
+            List<CommPrimitive> TempMessageBuffer = new List<CommPrimitive>();
             try
             {
-                CommPrimitive comm1 = new CommPrimitive(2020, 09, 16, 2, 00, 00);
-                CommPrimitive comm2 = new CommPrimitive(2020, 09, 16, 2, 00, 50);
-                CommPrimitive comm3 = new CommPrimitive(2020, 09, 16, 2, 01, 00);
-                CommPrimitive comm4 = new CommPrimitive(2020, 09, 16, 2, 20, 00);
-                CommPrimitive comm5 = new CommPrimitive(2020, 09, 16, 2, 30, 00);
-                CommPrimitive comm6 = new CommPrimitive(2020, 09, 16, 2, 50, 00);
-                CommPrimitive comm7 = new CommPrimitive(2020, 09, 16, 3, 00, 00);
-                CommPrimitive comm8 = new CommPrimitive(2020, 09, 16, 3, 00, 10);
-                CommPrimitive comm9 = new CommPrimitive(2020, 09, 16, 4, 00, 00);
-                CommPrimitive comm10 = new CommPrimitive(2020, 08, 16, 6, 00, 00);
-                CommPrimitive comm11 = new CommPrimitive(2002, 08, 16, 4, 00, 00);
-                try
+                Console.WriteLine("Able to enter the try block");
+                while ((inputFromPipe = Console.ReadLine()) != null)
                 {
+                    Console.WriteLine("Am able to read some stuff..");
                     if (ListHolder.MuTexLock.WaitOne())
                     {
-                        ListHolder.MessageHolder.Add(comm1);
-                        SetHourCount(comm1);
-                        SetDayCount(comm1);
-                        ListHolder.MessageHolder.Add(comm2);
-                        SetHourCount(comm2);
-                        SetDayCount(comm2);
-                        ListHolder.MessageHolder.Add(comm3);
-                        SetHourCount(comm3);
-                        SetDayCount(comm3);
-                        ListHolder.MessageHolder.Add(comm4);
-                        SetHourCount(comm4);
-                        SetDayCount(comm4);
-                        ListHolder.MessageHolder.Add(comm5);
-                        SetHourCount(comm5);
-                        SetDayCount(comm5);
-                        ListHolder.MessageHolder.Add(comm6);
-                        SetHourCount(comm6);
-                        SetDayCount(comm6);
-                        ListHolder.MessageHolder.Add(comm7);
-                        SetHourCount(comm7);
-                        SetDayCount(comm7);
-                        ListHolder.MessageHolder.Add(comm8);
-                        SetHourCount(comm8);
-                        SetDayCount(comm8);
-                        ListHolder.MessageHolder.Add(comm9);
-                        SetHourCount(comm9);
-                        SetDayCount(comm9);
-                        ListHolder.MessageHolder.Add(comm10);
-                        SetHourCount(comm10);
-                        SetDayCount(comm10);
-                        ListHolder.MessageHolder.Add(comm11);
-                        SetHourCount(comm11);
-                        SetDayCount(comm11);
+                        Console.WriteLine("Locked sucessfully");
+                        if (AddToBuffer == 1)
+                        {
+                            Console.WriteLine("buffer to main");
+                            ListHolder.MessageHolder.AddRange(TempMessageBuffer);
+                            TempMessageBuffer.Clear();
+                            AddToBuffer = 0;
+                        }
+                        Console.WriteLine("Line 50");
+                        CommPrimitive comm = JsonSerializer.Deserialize<CommPrimitive>(inputFromPipe);
+                        try
+                        {
+                            ListHolder.MessageHolder.Add(comm);
+                            SetHourCount(comm);
+                            SetDayCount(comm);
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Not able to deserialize!");
+                        }
                         ListHolder.MuTexLock.ReleaseMutex();
                     }
-
+                    else
+                    {
+                        AddToBuffer = 1;
+                        CommPrimitive comm = JsonSerializer.Deserialize<CommPrimitive>(inputFromPipe);
+                        TempMessageBuffer.Add(comm);
+                    }
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Exception in adding" + e);
-                }
+                Console.WriteLine("Initialized it!");
+                init = 1;
             }
-            catch
+            catch (Exception e)
             {
-                Console.WriteLine("Exception in objects..");
+                Console.WriteLine("Error when reading from pipe" + e);
             }
+                //try
+                //{
+                //    CommPrimitive comm1 = new CommPrimitive(2020, 09, 16, 2, 00, 00);
+                //    CommPrimitive comm2 = new CommPrimitive(2020, 09, 16, 2, 00, 50);
+                //    CommPrimitive comm3 = new CommPrimitive(2020, 09, 16, 2, 01, 00);
+                //    CommPrimitive comm4 = new CommPrimitive(2020, 09, 16, 2, 20, 00);
+                //    CommPrimitive comm5 = new CommPrimitive(2020, 09, 16, 2, 30, 00);
+                //    CommPrimitive comm6 = new CommPrimitive(2020, 09, 16, 2, 50, 00);
+                //    CommPrimitive comm7 = new CommPrimitive(2020, 09, 16, 3, 00, 00);
+                //    CommPrimitive comm8 = new CommPrimitive(2020, 09, 16, 3, 00, 10);
+                //    CommPrimitive comm9 = new CommPrimitive(2020, 09, 16, 4, 00, 00);
+                //    CommPrimitive comm10 = new CommPrimitive(2020, 08, 16, 6, 00, 00);
+                //    CommPrimitive comm11 = new CommPrimitive(2002, 08, 16, 4, 00, 00);
+                //    try
+                //    {
+                //        if (ListHolder.MuTexLock.WaitOne())
+                //        {
+                //            ListHolder.MessageHolder.Add(comm1);
+                //            SetHourCount(comm1);
+                //            SetDayCount(comm1);
+                //            ListHolder.MessageHolder.Add(comm2);
+                //            SetHourCount(comm2);
+                //            SetDayCount(comm2);
+                //            ListHolder.MessageHolder.Add(comm3);
+                //            SetHourCount(comm3);
+                //            SetDayCount(comm3);
+                //            ListHolder.MessageHolder.Add(comm4);
+                //            SetHourCount(comm4);
+                //            SetDayCount(comm4);
+                //            ListHolder.MessageHolder.Add(comm5);
+                //            SetHourCount(comm5);
+                //            SetDayCount(comm5);
+                //            ListHolder.MessageHolder.Add(comm6);
+                //            SetHourCount(comm6);
+                //            SetDayCount(comm6);
+                //            ListHolder.MessageHolder.Add(comm7);
+                //            SetHourCount(comm7);
+                //            SetDayCount(comm7);
+                //            ListHolder.MessageHolder.Add(comm8);
+                //            SetHourCount(comm8);
+                //            SetDayCount(comm8);
+                //            ListHolder.MessageHolder.Add(comm9);
+                //            SetHourCount(comm9);
+                //            SetDayCount(comm9);
+                //            ListHolder.MessageHolder.Add(comm10);
+                //            SetHourCount(comm10);
+                //            SetDayCount(comm10);
+                //            ListHolder.MessageHolder.Add(comm11);
+                //            SetHourCount(comm11);
+                //            SetDayCount(comm11);
+                //            ListHolder.MuTexLock.ReleaseMutex();
+                //        }
 
-        }
+                //    }
+                //    catch (Exception e)
+                //    {
+                //        Console.WriteLine("Exception in adding" + e);
+                //    }
+                //}
+                //catch
+                //{
+                //    Console.WriteLine("Exception in objects..");
+                //}
+
+            }
 
         /// <summary>
         /// This method updates counter value in Daily count
@@ -147,19 +173,38 @@ namespace VisitorCounter.Receiver
                 HourlyCount.Add(hour, 1);
             }
         }
+        public static int Init
+        {
+            get
+            {
+                return init;
+            }
+            set
+            {
+                init = value;
+                if (init == 1)
+                {
+                    StartOpsThread();
+                }
+            }
+        }
+
+        private static int init;
+
+        private static void StartOpsThread()
+        {
+            Thread thread2 = new Thread(OperationsThread);
+            thread2.Start();
+        }
 
         /// <summary>
         /// Main
         /// </summary>
         public static void Main()
         {
-
+            Receiver.init = 0;
             Thread thread1 = new Thread(ConsolePipeReader);
             thread1.Start();
-            Thread thread2 = new Thread(OperationsThread);
-            thread2.Start();
-            Console.ReadKey();
-
         }
 
         /// <summary>

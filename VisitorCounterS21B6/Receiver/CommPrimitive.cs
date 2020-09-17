@@ -16,6 +16,10 @@ namespace VisitorCounter
             Date = new DateTime(year, month, day);
             time = new TimeSpan(hour, min, sec);
         }
+        public CommPrimitive()
+        {
+
+        }
     }
 }
 
