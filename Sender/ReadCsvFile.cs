@@ -12,7 +12,7 @@ using System.Xml.Serialization.Configuration;
 
 namespace Sender
 {
-     class ReadCsvFileAndExtarctDateAndTime
+     public class ReadCsvFileAndExtarctDateAndTime
     {
          public class DateAndTime
         {
@@ -20,58 +20,72 @@ namespace Sender
             public TimeSpan Time { get; set; }
             
         }
-        
-        public List<DateAndTime> extractDateAndTime()
+
+        public string RetrieveCsvFilePath()
         {
-            
-            string formatForDate = "dd/MM/yyyy";
-            string formatForTime = "HH:mm:ss";
-
-        
-
-            CultureInfo provider = new CultureInfo("en-GB");
-            Thread.CurrentThread.CurrentCulture = provider;
-
-
-            
-            List<DateAndTime> allDatesandTime = new List<DateAndTime>();
             String csvInputFilePath = Directory.GetCurrentDirectory();
             String csvFileName = "FootFallEntries.csv";
             csvInputFilePath += @"\" + csvFileName;
-            string line;
-            try
+            return csvInputFilePath;
+        }
+        
+        public List<DateAndTime> ExtractDateAndTime()
+        {
+            List<DateAndTime> allDatesandTime = new List<DateAndTime>();
+            CommPrimitive commPrimitive;
+
+            int dateColumnNumber = 0;
+            int timeColumnNumber = 1;
+            
+
+            CultureInfo provider = new CultureInfo("en-GB");
+            Thread.CurrentThread.CurrentCulture = provider;
+            string formatForDate = "dd/MM/yyyy";
+
+            string csvFilePath = RetrieveCsvFilePath();
+            try  
             {
-                StreamReader dataInCsvFile = new StreamReader(csvInputFilePath);
-                dataInCsvFile.ReadLine();
-                while(!dataInCsvFile.EndOfStream)
+                using (StreamReader dataInCsvFile = new StreamReader(csvFilePath))
                 {
-                    line= dataInCsvFile.ReadLine();
-                    string[] eachRowOfCsvFile = line.Split(',');
-                    DateAndTime objOfDateAndTime = new DateAndTime();
-
-                    try
-                    {
-                        objOfDateAndTime.Date = DateTime.ParseExact(eachRowOfCsvFile[0], formatForDate, provider);
-                        
-                    }
-                    catch (FormatException)
-                    {
-                        Console.WriteLine("{0} is not in the correct format.", eachRowOfCsvFile[0]);
-                    }
-                    try
-                    {
-                        objOfDateAndTime.Time = TimeSpan.Parse(eachRowOfCsvFile[1]);
-                        
-                    }
-                    catch (FormatException)
-                    {
-                        Console.WriteLine("{0} is not in the correct format.", eachRowOfCsvFile[1]);
-                    }
+                    //StreamReader dataInCsvFile = new StreamReader(csvInputFilePath);
+                    dataInCsvFile.ReadLine();
+                    string eachRow;
                     
+                    while (!dataInCsvFile.EndOfStream)
+                    {
+                        eachRow = dataInCsvFile.ReadLine();
+                        string[] eachRowOfCsvFile = eachRow.Split(',');       
+                        DateAndTime objOfDateAndTime = new DateAndTime();
 
-                    allDatesandTime.Add(objOfDateAndTime);
+                        try
+                        {
+                            objOfDateAndTime.Date = DateTime.ParseExact(eachRowOfCsvFile[dateColumnNumber], formatForDate, provider);
+
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("{0} is not in the correct format.", eachRowOfCsvFile[dateColumnNumber]);
+                        }
+                        try
+                        {
+                            objOfDateAndTime.Time = TimeSpan.Parse(eachRowOfCsvFile[timeColumnNumber]);
+
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("{0} is not in the correct format.", eachRowOfCsvFile[timeColumnNumber]);
+                        }
+
+
+                        allDatesandTime.Add(objOfDateAndTime);
+                        commPrimitive = new CommPrimitive(objOfDateAndTime.Date.Year,
+                                                            objOfDateAndTime.Date.Month,
+                                                            objOfDateAndTime.Date.Day,
+                                                            objOfDateAndTime.Time.Hours,
+                                                            objOfDateAndTime.Time.Minutes,
+                                                            objOfDateAndTime.Time.Seconds);
+                    }
                 }
-
             }
             catch (Exception exception)
             {

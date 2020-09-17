@@ -16,17 +16,12 @@ namespace Sender
 
             ReadCsvFileAndExtarctDateAndTime object1 = new ReadCsvFileAndExtarctDateAndTime();
             List<ReadCsvFileAndExtarctDateAndTime.DateAndTime> dateAndTimeList;
-            dateAndTimeList = object1.extractDateAndTime();
+            dateAndTimeList = object1.ExtractDateAndTime();
 
             foreach (var entry in dateAndTimeList)
             {
 
-                Console.Write(entry.Date.Year + " ");
-                Console.Write(entry.Date.Month + " ");
-                Console.Write(entry.Date.Day + " ");
-                Console.Write(entry.Time.Hours + " ");
-                Console.Write(entry.Time.Minutes + " ");
-                Console.WriteLine(entry.Time.Seconds);
+                
             }
 
         
