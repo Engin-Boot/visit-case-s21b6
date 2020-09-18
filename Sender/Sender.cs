@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace VisitorCounter.Sender
+namespace Sender
 {
     class Sender
     {

@@ -4,7 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Threading;
 
-namespace VisitorCounter.Sender
+namespace Sender
 {
     public class ReadCsvFileAndExtarctDateAndTime
     {
@@ -49,7 +49,6 @@ namespace VisitorCounter.Sender
 
         public DateAndTime SplitCsvFileAndReturnDateAndTime(string eachRow)
         {
-
             string[] eachRowOfCsvFile = eachRow.Split(',');
 
             DateAndTime objOfDateAndTime = new DateAndTime();
@@ -67,6 +66,8 @@ namespace VisitorCounter.Sender
             catch (FormatException)
             {
                 Console.WriteLine("{0} is not in the correct format.", eachRowOfCsvFile[dateColumnNumber]);
+                throw new FormatException("You passed incorrect date format.");
+
             }
             try
             {
@@ -77,6 +78,8 @@ namespace VisitorCounter.Sender
             catch (FormatException)
             {
                 Console.WriteLine("{0} is not in the correct format.", eachRowOfCsvFile[timeColumnNumber]);
+                throw new FormatException("You passed incorrect time format.");
+
             }
 
 
