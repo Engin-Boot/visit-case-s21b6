@@ -75,15 +75,10 @@ namespace VisitorCounter.Sender
                         {
                             Console.WriteLine("{0} is not in the correct format.", eachRowOfCsvFile[timeColumnNumber]);
                         }
-
-
                         allDatesandTime.Add(objOfDateAndTime);
-                        commPrimitive = new CommPrimitive(objOfDateAndTime.Date.Year,
-                                                            objOfDateAndTime.Date.Month,
-                                                            objOfDateAndTime.Date.Day,
-                                                            objOfDateAndTime.Time.Hours,
-                                                            objOfDateAndTime.Time.Minutes,
-                                                            objOfDateAndTime.Time.Seconds);
+                        commPrimitive = new CommPrimitive();
+                        commPrimitive.Date = objOfDateAndTime.Date;
+                        commPrimitive.Time = objOfDateAndTime.Time;
                     }
                 }
             }
