@@ -14,45 +14,41 @@ namespace Sender.Test
         [Fact]
         public void WhenAskForCsvFilePathReturnTheExpectedCorrectPath()
         {
-            ReadCsvFileAndExtarctDateAndTime obj = new ReadCsvFileAndExtarctDateAndTime();
 
             string expectedPath = Directory.GetCurrentDirectory() + @"\FootFallEntries.csv";
 
-            Assert.True(expectedPath == obj.RetrieveCsvFilePath());
+            Assert.True(expectedPath == ReadCsvFileAndExtarctData.RetrieveCsvFilePath());
         }
 
         [Fact]
 
         public void WhenValidStringIsPassedToSplitCsvFileMethodThenSplitToDateTimeCorrectly()
         {
-            ReadCsvFileAndExtarctDateAndTime obj = new ReadCsvFileAndExtarctDateAndTime();
+            ReadCsvFileAndExtarctData obj = new ReadCsvFileAndExtarctData();
 
             string eachrow = "01/01/2020,16:23:33";
-            ReadCsvFileAndExtarctDateAndTime.DateAndTime dateAndTimeObj = new ReadCsvFileAndExtarctDateAndTime.DateAndTime();
-            dateAndTimeObj = obj.SplitCsvFileAndReturnDateAndTime(eachrow);
+            DateAndTime dateAndTimeObj = new DateAndTime();
+            dateAndTimeObj = SplitCsvFileAndReturnData.SplitCsvFileAndReturnDateAndTime (eachrow);
 
             Assert.True(dateAndTimeObj.dateAndTime.ToString() == "01/01/2020 16:23:33");
         }
         [Fact]
         public void WhenDateIsIncorrectlyPassedToSplitCsvFileMethodThenThrowException()
         {
-            ReadCsvFileAndExtarctDateAndTime obj = new ReadCsvFileAndExtarctDateAndTime();
-
             string eachrow = "01/21/2020,16:23:33";
-            ReadCsvFileAndExtarctDateAndTime.DateAndTime dateAndTimeObj = new ReadCsvFileAndExtarctDateAndTime.DateAndTime();
+            DateAndTime dateAndTimeObj = new DateAndTime();
 
-            Assert.Throws<FormatException>(() => dateAndTimeObj = obj.SplitCsvFileAndReturnDateAndTime(eachrow));
+            Assert.Throws<FormatException>(() => dateAndTimeObj = SplitCsvFileAndReturnData.SplitCsvFileAndReturnDateAndTime (eachrow));
         }
 
         [Fact]
         public void WhenTimeIsIncorrectlyPassedToSplitCsvFileMethodThenThrowException()
         {
-            ReadCsvFileAndExtarctDateAndTime obj = new ReadCsvFileAndExtarctDateAndTime();
-
+            
             string eachrow = "01/12/2020,16:60:33";
-            ReadCsvFileAndExtarctDateAndTime.DateAndTime dateAndTimeObj = new ReadCsvFileAndExtarctDateAndTime.DateAndTime();
+            DateAndTime dateAndTimeObj = new DateAndTime();
 
-            Assert.Throws<FormatException>(() => dateAndTimeObj = obj.SplitCsvFileAndReturnDateAndTime(eachrow));
+            Assert.Throws<FormatException>(() => dateAndTimeObj = SplitCsvFileAndReturnData.SplitCsvFileAndReturnDateAndTime(eachrow));
         }
     }
 }
