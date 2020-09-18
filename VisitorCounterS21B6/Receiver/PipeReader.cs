@@ -14,59 +14,39 @@ namespace VisitorCounter.Receiver
         {
             Console.WriteLine("In pipe");
             string inputFromPipe;
-            int AddToBuffer = 0;
-            List<CommPrimitive> TempMessageBuffer = new List<CommPrimitive>();
-            try
+            while ((inputFromPipe = Console.ReadLine()) != null)
             {
-                Console.WriteLine("Able to enter the try block");
-                while ((inputFromPipe = Console.ReadLine()) != null)
-                {
-                    Console.WriteLine("Am able to read some stuff.." + inputFromPipe);
-                    if (ListHolder.MuTexLock.WaitOne())
-                    {
-                        Console.WriteLine("Locked sucessfully");
-                        if (AddToBuffer == 1)
-                        {
-                            Console.WriteLine("buffer to main");
-                            ListHolder.MessageHolder.AddRange(TempMessageBuffer);
-                            TempMessageBuffer.Clear();
-                            AddToBuffer = 0;
-                        }
-                        Console.WriteLine("Line 50");
-                        CommPrimitive comm = JsonSerializer.Deserialize<CommPrimitive>(inputFromPipe);
-                        try
-                        {
-                            ListHolder.MessageHolder.Add(comm);
-                            CountSetters.SetHourCount(comm.Date);
-                            CountSetters.SetDayCount(comm.Date);
-                        }
-                        catch
-                        {
-                            Console.WriteLine("Not able to deserialize!");
-                        }
-                        ListHolder.MuTexLock.ReleaseMutex();
-                    }
-                    else
-                    {
-                        AddToBuffer = 1;
-                        CommPrimitive comm = JsonSerializer.Deserialize<VisitorCounter.CommPrimitive>(inputFromPipe);
-                        TempMessageBuffer.Add(comm);
-                    }
-                }
-                if (ListHolder.MuTexLock.WaitOne())
-                {
-                    foreach (var var1 in ListHolder.MessageHolder)
-                    {
-                        Console.WriteLine("Data: Date = {0}", var1.Date);
-                        //Console.WriteLine("Data: Time = {0}", var1.Time);
-                    }
-                }
+                AddEventToDS(inputFromPipe);
+            }
+            }
 
-            }
-            catch (Exception e)
+        static void AddEventToDS(string InputFromPipe)
+        {
+            List<CommPrimitive> TempMessageBuffer = new List<CommPrimitive>();
+            int AddToBuffer = 0;
+            if (ListHolder.MuTexLock.WaitOne())
             {
-                Console.WriteLine("Error when reading from pipe" + e);
+                if (AddToBuffer == 1)
+                {
+                    ListHolder.MessageHolder.AddRange(TempMessageBuffer);
+                    TempMessageBuffer.Clear();
+                    AddToBuffer = 0;
+                }
+                CommPrimitive comm = JsonSerializer.Deserialize<CommPrimitive>(InputFromPipe);
+
+                ListHolder.MessageHolder.Add(comm);
+                CountSetters.SetHourCount(comm.Date);
+                CountSetters.SetDayCount(comm.Date);
+                ListHolder.MuTexLock.ReleaseMutex();
             }
+            else
+            {
+                AddToBuffer = 1;
+                CommPrimitive comm = JsonSerializer.Deserialize<VisitorCounter.CommPrimitive>(InputFromPipe);
+                TempMessageBuffer.Add(comm);
+            }
+
+        }
             //try
             //{
             //    CommPrimitive comm1 = new CommPrimitive();
