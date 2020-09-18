@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace VisitorCounter.Sender
 {
@@ -20,20 +21,18 @@ namespace VisitorCounter.Sender
             dateAndTimeList = object1.ExtractDateAndTime();
 
 
-            foreach (var objOfDateAndTime in dateAndTimeList)
-            {
-                Console.WriteLine(objOfDateAndTime.dateAndTime.ToString());
+            //foreach (var objOfDateAndTime in dateAndTimeList)
+            //{
+            //    Console.WriteLine(objOfDateAndTime.dateAndTime.ToString());
 
-            }
+            //}
 
             foreach (var entry in dateAndTimeList)
             {
-                string JsonString = JsonSerializer.Serialize(entry);
-                Console.WriteLine(JsonString);
+                //string JsonString = JsonConvert.SerializeObject(entry);
+                //Console.WriteLine(JsonString);
+                Console.WriteLine(entry.dateAndTime.ToString());
             }
-
-
-
         }
     }
 }

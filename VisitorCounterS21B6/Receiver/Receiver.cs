@@ -9,7 +9,7 @@ namespace VisitorCounter.Receiver
 {
     internal class ListHolder
     {
-        public static List<CommPrimitive> MessageHolder = new List<CommPrimitive>();
+        public static List<DateTime> MessageHolder = new List<DateTime>();
         public static Mutex MuTexLock = new Mutex();
     }
 
@@ -30,7 +30,7 @@ namespace VisitorCounter.Receiver
         /// <summary>
         /// Main thread
         /// </summary>
-        private static void OperationsThread()
+        internal static void OperationsThread()
         {
             Console.WriteLine("In operations..");
             double avg = DataProcessor.GetDailyAverage();

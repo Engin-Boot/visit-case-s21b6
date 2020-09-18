@@ -10,9 +10,6 @@ namespace VisitorCounter.Sender
     {
         //[JsonProperty(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
         public DateTime Date { get; set; }
-        //[JsonProperty(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
-        public TimeSpan Time { get; set; }
-        //public const int Counter = 1;
         
     }
 }

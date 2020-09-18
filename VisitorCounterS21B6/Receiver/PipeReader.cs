@@ -4,12 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
+using System.Threading;
+using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace VisitorCounter.Receiver
 {
     internal class PipeReader
     {
 
+        /// <summary>
+        /// This is used to read input from console
+        /// </summary>
         internal static void ConsolePipeReader()
         {
             Console.WriteLine("In pipe");
@@ -25,36 +32,37 @@ namespace VisitorCounter.Receiver
             {
                 Console.WriteLine("Error in reading from the pipe" + e);
             }
+            //foreach (var var1 in ListHolder.MessageHolder)
+            //{
+            //    Console.WriteLine("Data: Date = {0} , Time = {1}", var1.Date.Date, var1.Date.TimeOfDay);
+            //}
+            Receiver.OperationsThread();
+            Console.WriteLine("End of op");
         }
+
+        /// <summary>
+        /// This is used to add an even to the DS maintained
+        /// </summary>
+        /// <param name="InputFromPipe"></param>
 
         static void AddEventToDS(string InputFromPipe)
         {
-            List<CommPrimitive> TempMessageBuffer = new List<CommPrimitive>();
-            int AddToBuffer = 0;
-            if (ListHolder.MuTexLock.WaitOne())
+            if (ListHolder.MuTexLock.WaitOne() && InputFromPipe != null)
             {
-                if (AddToBuffer == 1)
-                {
-                    ListHolder.MessageHolder.AddRange(TempMessageBuffer);
-                    TempMessageBuffer.Clear();
-                    AddToBuffer = 0;
-                }
-                CommPrimitive comm = JsonSerializer.Deserialize<CommPrimitive>(InputFromPipe);
-
+                Console.WriteLine("Message received = "+ InputFromPipe);
+                //DateTime comm = JsonConvert.DeserializeObject<DateTime>(InputFromPipe);
+                //Console.WriteLine("Deserialized message-> Time = {0}, Date ={1}", comm.Date.TimeOfDay, comm.Date.Date);
+                DateTime comm = DateTime.Parse(InputFromPipe);
+                Console.WriteLine("Data: Date= {0}, Time = {1}", comm.Date, comm.TimeOfDay);
                 ListHolder.MessageHolder.Add(comm);
-                CountSetters.SetHourCount(comm.Date);
                 CountSetters.SetDayCount(comm.Date);
+                Console.WriteLine("Added {0} to DayCounter", comm.Date.Date);
+                CountSetters.SetHourCount(comm.Date);
+                Console.WriteLine("Added {0} to HourCounter", comm.Date.TimeOfDay);
+
                 ListHolder.MuTexLock.ReleaseMutex();
             }
-            else
-            {
-                AddToBuffer = 1;
-                CommPrimitive comm = JsonSerializer.Deserialize<VisitorCounter.CommPrimitive>(InputFromPipe);
-                TempMessageBuffer.Add(comm);
-            }
-
         }
-        
     }
 }
 

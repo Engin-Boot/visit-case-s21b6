@@ -20,6 +20,11 @@ namespace VisitorCounter.Receiver
         /// <param name="comm1"></param>
         internal static void SetDayCount(DateTime date)
         {
+            //DailyCount.Add(new DateTime(2002, 2, 21), 1);
+            //DailyCount.Add(new DateTime(2003, 4, 21), 1);
+            //HourlyCount.Add(1, 1);
+            //HourlyCount.Add(4, 1);
+            //HourlyCount.Add(3, 1);
             var TempDate = date.Date;
             if (DailyCount.ContainsKey(TempDate))
             {
