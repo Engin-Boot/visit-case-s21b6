@@ -15,19 +15,24 @@ namespace VisitorCounter.Receiver
             string inputFromPipe;
             try
             {
-                while ((inputFromPipe = Console.ReadLine()) != null)
+                try
                 {
-                    AddEventToDS(inputFromPipe);
+                    inputFromPipe = Console.ReadLine();
+                    while ( ! (inputFromPipe == null) )
+                    {
+                        AddEventToDS(inputFromPipe);
+                        inputFromPipe = Console.ReadLine();
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error in while" + e);
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error in reading from the pipe" + e);
             }
-            //foreach (var var1 in ListHolder.MessageHolder)
-            //{
-            //    Console.WriteLine("Data: Date = {0} , Time = {1}", var1.Date.Date, var1.Date.TimeOfDay);
-            //}
             Receiver.OperationsThread();
             Console.WriteLine("End of op");
         }
@@ -37,23 +42,15 @@ namespace VisitorCounter.Receiver
         /// </summary>
         /// <param name="InputFromPipe"></param>
 
-        static void AddEventToDS(string InputFromPipe)
+        private static void AddEventToDS(string InputFromPipe)
         {
-            if (ListHolder.MuTexLock.WaitOne() && InputFromPipe != null)
-            {
                 Console.WriteLine("Message received = "+ InputFromPipe);
-                //DateTime comm = JsonConvert.DeserializeObject<DateTime>(InputFromPipe);
-                //Console.WriteLine("Deserialized message-> Time = {0}, Date ={1}", comm.Date.TimeOfDay, comm.Date.Date);
-                DateTime comm = DateTime.Parse(InputFromPipe);
-                Console.WriteLine("Data: Date= {0}, Time = {1}", comm.Date, comm.TimeOfDay);
-                ListHolder.MessageHolder.Add(comm);
+                var comm = DateTime.Parse(InputFromPipe);
+                Console.WriteLine("Data: Date= {0}, Time = {1}", comm.Date, comm.Date.TimeOfDay);
                 CountSetters.SetDayCount(comm.Date);
                 Console.WriteLine("Added {0} to DayCounter", comm.Date.Date);
                 CountSetters.SetHourCount(comm.Date);
-                Console.WriteLine("Added {0} to HourCounter", comm.Date.TimeOfDay);
-
-                ListHolder.MuTexLock.ReleaseMutex();
-            }
+                Console.WriteLine("Added {0} to HourCounter", comm.Date);
         }
     }
 }

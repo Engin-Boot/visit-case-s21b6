@@ -72,7 +72,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommPrimitive.cs" />
     <Compile Include="CountSetters.cs" />
     <Compile Include="DataProcessor.cs" />
     <Compile Include="PipeReader.cs" />

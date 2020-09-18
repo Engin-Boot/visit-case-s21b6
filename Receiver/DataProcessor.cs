@@ -42,7 +42,7 @@ namespace VisitorCounter.Receiver
         }
 
         /// <summary>
-        /// This method gets Hourly average
+        /// This method gets Hourly average for month
         /// </summary>
         /// <param name="hour"></param>
         /// <returns></returns>
