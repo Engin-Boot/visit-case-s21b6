@@ -18,6 +18,10 @@ namespace Sender
                 //Console.WriteLine(JsonString);
                 Console.WriteLine(entry.dateAndTime.ToString());
             }
+            
+
+          
+
         }
     }
 }

@@ -5,7 +5,7 @@
 //};
 namespace Sender
 {
-    internal class CommPrimitive
+    public class CommPrimitive
     {
         //[JsonProperty(ItemConverterType = typeof(JavaScriptDateTimeConverter))]
         public DateTime Date { get; set; }
