@@ -69,14 +69,7 @@ namespace Receiver
         /// <returns></returns>  
         internal static int GetCountOnDate(DateTime date)
         {
-            if (CountSetters.DailyCount.ContainsKey(date))
-            {
-                return CountSetters.DailyCount[date];
-            }
-            else
-            {
-                return 0;
-            }
+            return CountSetters.DailyCount.ContainsKey(date) ? CountSetters.DailyCount[date] : 0;
         }
 
         /// <summary>
@@ -86,14 +79,7 @@ namespace Receiver
         /// <returns></returns>
         internal static int GetCountOfHour(int hour)
         {
-            if (CountSetters.HourlyCount.ContainsKey(hour))
-            {
-                return CountSetters.HourlyCount[hour];
-            }
-            else
-            {
-                return 0;
-            }
+            return CountSetters.HourlyCount.ContainsKey(hour) ? CountSetters.HourlyCount[hour] : 0;
         }
 
         /// <summary>
