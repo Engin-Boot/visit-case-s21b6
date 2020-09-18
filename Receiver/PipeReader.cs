@@ -1,7 +1,6 @@
 ﻿using System;
 
-
-namespace VisitorCounter.Receiver
+namespace Receiver
 {
     internal class PipeReader
     {
@@ -12,15 +11,14 @@ namespace VisitorCounter.Receiver
         internal static void ConsolePipeReader()
         {
             Console.WriteLine("In pipe");
-            string inputFromPipe;
             try
             {
                 try
                 {
-                    inputFromPipe = Console.ReadLine();
-                    while ( ! (inputFromPipe == null) )
+                    var inputFromPipe = Console.ReadLine();
+                    while ( inputFromPipe != null )
                     {
-                        AddEventToDS(inputFromPipe);
+                        AddEventToDs(inputFromPipe);
                         inputFromPipe = Console.ReadLine();
                     }
                 }
@@ -40,12 +38,12 @@ namespace VisitorCounter.Receiver
         /// <summary>
         /// This is used to add an even to the DS maintained
         /// </summary>
-        /// <param name="InputFromPipe"></param>
+        /// <param name="inputFromPipe"></param>
 
-        private static void AddEventToDS(string InputFromPipe)
+        private static void AddEventToDs(string inputFromPipe)
         {
-                Console.WriteLine("Message received = "+ InputFromPipe);
-                var comm = DateTime.Parse(InputFromPipe);
+                Console.WriteLine("Message received = "+ inputFromPipe);
+                var comm = DateTime.Parse(inputFromPipe);
                 Console.WriteLine("Data: Date= {0}, Time = {1}", comm.Date, comm.Date.TimeOfDay);
                 CountSetters.SetDayCount(comm.Date);
                 Console.WriteLine("Added {0} to DayCounter", comm.Date.Date);

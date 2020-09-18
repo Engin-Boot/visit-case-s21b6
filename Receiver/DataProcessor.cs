@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace VisitorCounter.Receiver
+namespace Receiver
 {
     internal class DataProcessor
     {
@@ -50,8 +50,8 @@ namespace VisitorCounter.Receiver
         {
             try
             {
-                int count = GetCountOfHour(hour);
-                double avg = (double)count / CountSetters.DailyCount.Count;
+                var count = GetCountOfHour(hour);
+                var avg = (double)count / CountSetters.DailyCount.Count;
                 Console.WriteLine("Average footfall at {0} is:{1}", hour, avg);
                 return avg;
             }
@@ -104,18 +104,18 @@ namespace VisitorCounter.Receiver
 
         internal static double GetWeeklyAverage(DayOfWeek day)
         {
-            IEnumerable<int> en = from a in CountSetters.DailyCount where a.Key.DayOfWeek == day select a.Value;
-            int totalCount = en.Sum();
+            var en = from a in CountSetters.DailyCount where a.Key.DayOfWeek == day select a.Value;
+            var totalCount = en.Sum();
+            var cul = CultureInfo.CurrentCulture;
             if (CountSetters.DailyCount.Count == 0)
             {
                 return 0;
             }
             else
             {
-                DateTime latestEntry = CountSetters.DailyCount.ElementAt(CountSetters.DailyCount.Count - 1).Key;
-                CultureInfo cul = CultureInfo.CurrentCulture;
-                int weekNum = cul.Calendar.GetWeekOfYear(latestEntry, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
-                return (Double)totalCount / weekNum;
+                var latestEntry = CountSetters.DailyCount.ElementAt(CountSetters.DailyCount.Count - 1).Key;
+                var weekNum = cul.Calendar.GetWeekOfYear(latestEntry, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
+                return (double)totalCount / weekNum;
             }
         }
 

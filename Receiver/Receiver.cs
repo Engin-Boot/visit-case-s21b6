@@ -3,7 +3,7 @@ using System.Threading;
 using System.Collections.Generic;
 
 
-namespace VisitorCounter.Receiver
+namespace Receiver
 {
     internal class Receiver
     {

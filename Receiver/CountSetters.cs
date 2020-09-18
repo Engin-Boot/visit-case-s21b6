@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VisitorCounter.Receiver
+namespace Receiver
 {
     internal class CountSetters
     {
@@ -14,7 +14,6 @@ namespace VisitorCounter.Receiver
         /// <summary>
         /// This method updates counter value in Daily count
         /// </summary>
-        /// <param name="comm1"></param>
         internal static void SetDayCount(DateTime date)
         {
             //DailyCount.Add(new DateTime(2002, 2, 21), 1);
@@ -22,24 +21,23 @@ namespace VisitorCounter.Receiver
             //HourlyCount.Add(1, 1);
             //HourlyCount.Add(4, 1);
             //HourlyCount.Add(3, 1);
-            var TempDate = date.Date;
-            if (DailyCount.ContainsKey(TempDate))
+            var tempDate = date.Date;
+            if (DailyCount.ContainsKey(tempDate))
             {
-                DailyCount[TempDate]++;
+                DailyCount[tempDate]++;
             }
             else
             {
-                DailyCount.Add(TempDate, 1);
+                DailyCount.Add(tempDate, 1);
             }
         }
 
         /// <summary>
-        /// This method updates HourCouter when an counter object arrives
+        /// This method updates HourCounter when an counter object arrives
         /// </summary>
-        /// <param name="comm1"></param>
         internal static void SetHourCount(DateTime time)
         {
-            int hour = time.TimeOfDay.Hours;
+            var hour = time.TimeOfDay.Hours;
             if (HourlyCount.ContainsKey(hour))
             {
                 HourlyCount[hour]++;
