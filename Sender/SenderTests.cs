@@ -1,6 +1,0 @@
-﻿namespace Sender
-{
-    class SenderTests
-    {
-    }
-}
