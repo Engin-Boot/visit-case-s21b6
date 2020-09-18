@@ -20,16 +20,11 @@ namespace VisitorCounter.Sender
             dateAndTimeList = object1.ExtractDateAndTime();
 
 
-            //foreach (var objOfDateAndTime in dateAndTimeList)
-            //{
-            //    Console.Write(objOfDateAndTime.dateAndTime.Day + " ");
-            //    Console.Write(objOfDateAndTime.dateAndTime.Month + " ");
-            //    Console.Write(objOfDateAndTime.dateAndTime.Year + " ");
-            //    Console.Write(objOfDateAndTime.dateAndTime.Hour + " ");
-            //    Console.Write(objOfDateAndTime.dateAndTime.Minute + " ");
-            //    Console.WriteLine(objOfDateAndTime.dateAndTime.Second + " ");
+            foreach (var objOfDateAndTime in dateAndTimeList)
+            {
+                Console.WriteLine(objOfDateAndTime.dateAndTime.ToString());
 
-            //}
+            }
 
             foreach (var entry in dateAndTimeList)
             {
