@@ -30,7 +30,7 @@ namespace Receiver
             IEnumerable<int> obj = from a in CountSetters.DailyCount where a.Key >= date select a.Value;
             try
             {
-                double avg = obj.Average(a => a);
+                var avg = obj.Average(a => a);
                 Console.WriteLine("Daily Average = " + avg);
                 return avg;
             }

@@ -22,7 +22,7 @@ namespace Receiver
         {
             Console.WriteLine("In operations..");
             var avg = DataProcessor.GetDailyAverage();
-            var avg1 = DataProcessor.GetDailyAverage(new DateTime(2020, 01, 01));
+            //var avg1 = DataProcessor.GetDailyAverage(new DateTime(2020, 01, 01));
             DataProcessor.GetHourlyAverage(0);
             Console.WriteLine(DataProcessor.GetWeeklyAverage(DayOfWeek.Monday));
         }
