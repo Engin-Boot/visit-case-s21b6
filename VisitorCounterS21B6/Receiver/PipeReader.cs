@@ -18,7 +18,7 @@ namespace VisitorCounter.Receiver
             {
                 AddEventToDS(inputFromPipe);
             }
-            }
+        }
 
         static void AddEventToDS(string InputFromPipe)
         {
@@ -127,4 +127,4 @@ namespace VisitorCounter.Receiver
 
         }
     }
-}
+
