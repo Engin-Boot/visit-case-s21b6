@@ -5,9 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Threading;
-using Newtonsoft.Json.Converters;
-using System.Text.Json.Serialization;
-using Newtonsoft.Json;
 
 namespace VisitorCounter.Receiver
 {

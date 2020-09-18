@@ -2,7 +2,6 @@ using System;
 using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Globalization;
 
 namespace VisitorCounter.Receiver

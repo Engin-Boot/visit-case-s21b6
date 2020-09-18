@@ -5,9 +5,6 @@ using System.IO.Pipes;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Text.Json;
-using Newtonsoft.Json;
 
 namespace VisitorCounter.Sender
 {
