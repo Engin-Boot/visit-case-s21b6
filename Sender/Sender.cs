@@ -4,24 +4,21 @@ using System.Collections.Generic;
 
 namespace Sender
 {
-    class Sender
+    public class Sender
     {
-        public static void Main()
+        public static void PrintData(List<DateAndTime> DateAndTimeList)
         {
-
-            
-            List<DateAndTime> dateAndTimeList = ExtractDataFromCsv.ExtractDateAndTime();
-
-            foreach (var entry in dateAndTimeList)
+            foreach (var entry in DateAndTimeList)
             {
                 //string JsonString = JsonConvert.SerializeObject(entry);
                 //Console.WriteLine(JsonString);
                 Console.WriteLine(entry.dateAndTime.ToString());
             }
-            
-
-          
-
+        }
+        public static void Main()
+        {
+            List<DateAndTime> dateAndTimeList = ExtractDataFromCsv.ExtractDateAndTime();
+            PrintData(dateAndTimeList);
         }
     }
 }

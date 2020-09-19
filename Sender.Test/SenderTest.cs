@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using System.Threading.Tasks;
 using Xunit;
-using Sender;
+using System.Collections.Generic;
 
 namespace Sender.Test
 {
+
     public class SenderTest
     {
         [Fact]
@@ -51,13 +48,6 @@ namespace Sender.Test
             Assert.Throws<FormatException>(() => dateAndTimeObj = SplitCsvFileAndReturnData.SplitCsvFileAndReturnDateAndTime(eachrow));
         }
 
-       
-        //[Fact]
-        //public void Test4()
-        //{
-
-        //}
-
         
         [Fact]
         public void WhenValidValuePassedToCommPrimitiveDataMemberDateThenDateIsSuccessfullyInitialized()
@@ -65,6 +55,21 @@ namespace Sender.Test
             CommPrimitive obj = new CommPrimitive();
             obj.Date = new DateTime(2020, 12, 01, 16, 02, 33);
             Assert.True(obj.Date.ToString("dd/MM/yyyy HH:mm:ss") == "01/12/2020 16:02:33");
+        }
+
+        [Fact]
+        public void WhenExtractDateAndTimeIsCalledThenDataIsRetrieved()
+        {
+            List<DateAndTime> AllDatesandTime = new List<DateAndTime>();
+            AllDatesandTime = ExtractDataFromCsv.ExtractDateAndTime();
+            Assert.True(AllDatesandTime.Count != 0);
+            Assert.True(ExtractDataFromCsv.IsDataRetrieved);
+        }
+
+        [Fact]
+        public void WhenValidListOfDateAndTimeIsPassedToPrintDataThenItGetPrintedSuccessfully()
+        {
+            //???
         }
     }
 }
