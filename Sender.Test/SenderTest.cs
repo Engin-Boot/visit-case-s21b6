@@ -66,10 +66,13 @@ namespace Sender.Test
             Assert.True(ExtractDataFromCsv.IsDataRetrieved);
         }
 
+        
         [Fact]
         public void WhenValidListOfDateAndTimeIsPassedToPrintDataThenItGetPrintedSuccessfully()
         {
-            //???
+            List<DateAndTime> dateAndTimeList = ExtractDataFromCsv.ExtractDateAndTime();
+            Sender.PrintData(dateAndTimeList);
+            Assert.True(Sender.IsMessagePrinted);
         }
     }
 }
