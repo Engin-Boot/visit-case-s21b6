@@ -13,19 +13,11 @@ namespace Receiver
             Console.WriteLine("In pipe");
             try
             {
-                try
-                {
-                    var inputFromPipe = Console.ReadLine();
-                    while ( inputFromPipe != null )
+                string inputFromPipe;
+                    while ( (inputFromPipe = Console.ReadLine())  != null )
                     {
                         AddEventToDs(inputFromPipe);
-                        inputFromPipe = Console.ReadLine();
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Error in while" + e);
-                }
             }
             catch (Exception e)
             {
@@ -42,13 +34,10 @@ namespace Receiver
 
         private static void AddEventToDs(string inputFromPipe)
         {
-                Console.WriteLine("Message received = "+ inputFromPipe);
-                var comm = DateTime.Parse(inputFromPipe);
-                Console.WriteLine("Data: Date= {0}, Time = {1}", comm.Date, comm.Date.TimeOfDay);
-                CountSetters.SetDayCount(comm.Date);
-                Console.WriteLine("Added {0} to DayCounter", comm.Date.Date);
-                CountSetters.SetHourCount(comm.Date);
-                Console.WriteLine("Added {0} to HourCounter", comm.Date);
+            var date = DateTime.Parse(inputFromPipe);
+            Console.WriteLine("Data obtained:Date = {0}, Time = {1}", date.Date, date.TimeOfDay);
+            CountSetters.SetHourCount(date);
+            CountSetters.SetDayCount(date);
         }
     }
 }

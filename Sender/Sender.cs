@@ -11,7 +11,8 @@ namespace Sender
         {
             foreach (var entry in DateAndTimeList)
             {
-                Console.WriteLine(entry.dateAndTime.ToString());
+                var date = entry.dateAndTime;
+                Console.WriteLine(date.ToString());
             }
             IsMessagePrinted = true;
         }
