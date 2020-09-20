@@ -7,6 +7,25 @@ namespace Receiver
     internal class DataProcessor
     {
         /// <summary>
+        /// Gets the number of Weeks between the 2 dates
+        /// </summary>
+        /// <param name="date1"></param>
+        /// <param name="date2"></param>
+        private static int GetNumberOfWeeks(DateTime date1, DateTime date2)
+        {
+            try
+            {
+                var numberOfWeeks = (int) (date1 - date2).TotalDays / 7;
+            }
+
+            catch
+            {
+                Console.WriteLine("Not able to calculate number of weeks ");
+            }
+            return 0;
+
+        }
+        /// <summary>
         ///     This method gets the daily average. By default, it calculates daily average from 1st Jan 2000
         /// </summary>
         /// <returns></returns>
@@ -47,8 +66,10 @@ namespace Receiver
             try
             {
                 var count = GetCountOfHour(hour);
-                var avg = (double) count / CountSetters.DailyCount.Count;
-                Console.WriteLine("Average footfall at {0} is:{1}", hour, avg);
+                var date1  = CountSetters.DailyCount.ElementAt(0).Key;
+                var date2  = CountSetters.DailyCount.ElementAt(CountSetters.DailyCount.Count).Key;
+                var numberOfWeeks = GetNumberOfWeeks(date1, date2);
+                var avg = (double) count / numberOfWeeks;
                 return avg;
             }
             catch (Exception e)
@@ -56,16 +77,6 @@ namespace Receiver
                 Console.WriteLine("Error in calculating Hourly Average" + e);
                 return 0;
             }
-        }
-
-        /// <summary>
-        ///     This method gets count on given day
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
-        internal static int GetCountOnDate(DateTime date)
-        {
-            return CountSetters.DailyCount.ContainsKey(date) ? CountSetters.DailyCount[date] : 0;
         }
 
         /// <summary>
@@ -79,7 +90,7 @@ namespace Receiver
         }
 
         /// <summary>
-        ///     Weekly average for current year
+        /// Weekly average for current year
         /// </summary>
         /// <param name="day"></param>
         /// <returns></returns>
