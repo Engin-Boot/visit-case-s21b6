@@ -33,7 +33,6 @@ namespace Receiver
                 HourlyCount[hour]++;
             else
                 HourlyCount.Add(hour, 1);
-            Console.WriteLine("Adding {0} to Hour counter, total count = {1}", hour, HourlyCount[hour]);
         }
     }
 }

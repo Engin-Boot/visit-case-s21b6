@@ -20,7 +20,7 @@ namespace Sender
             var dateOnly = ExtractDate(eachRowOfCsvFile[DateColumnNumber], provider);
             var timeOnly = ExtractTime(eachRowOfCsvFile[TimeColumnNumber], provider);
 
-            objOfDateAndTime.dateAndTime = dateOnly.Date.Add(timeOnly.TimeOfDay);
+            objOfDateAndTime.Dt = dateOnly.Date.Add(timeOnly.TimeOfDay);
 
             return objOfDateAndTime;
         }

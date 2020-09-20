@@ -15,15 +15,23 @@ namespace Receiver
         {
             try
             {
-                var numberOfWeeks = (int) (date1 - date2).TotalDays / 7;
+                var numberOfWeeks = (int) (Math.Abs((date1 - date2).TotalDays) / 7);
+                return numberOfWeeks ;
             }
 
             catch
             {
                 Console.WriteLine("Not able to calculate number of weeks ");
+                return 0;
             }
-            return 0;
+        }
 
+        internal static double GetAverageForCurrentMonth()
+        {
+            var currentMonth = DateTime.Now.Month;
+            var currentYear = DateTime.Now.Year;
+            var currentDate = new DateTime(currentYear, currentMonth, 01);
+            return GetDailyAverage(currentDate);
         }
         /// <summary>
         ///     This method gets the daily average. By default, it calculates daily average from 1st Jan 2000
@@ -46,7 +54,6 @@ namespace Receiver
             try
             {
                 var avg = obj.Average(a => a);
-                Console.WriteLine("Daily Average = " + avg);
                 return avg;
             }
             catch (Exception e)
@@ -67,7 +74,7 @@ namespace Receiver
             {
                 var count = GetCountOfHour(hour);
                 var date1  = CountSetters.DailyCount.ElementAt(0).Key;
-                var date2  = CountSetters.DailyCount.ElementAt(CountSetters.DailyCount.Count).Key;
+                var date2  = CountSetters.DailyCount.ElementAt(CountSetters.DailyCount.Count - 1).Key;
                 var numberOfWeeks = GetNumberOfWeeks(date1, date2);
                 var avg = (double) count / numberOfWeeks;
                 return avg;
@@ -90,7 +97,7 @@ namespace Receiver
         }
 
         /// <summary>
-        /// Weekly average for current year
+        /// Weekly average
         /// </summary>
         /// <param name="day"></param>
         /// <returns></returns>

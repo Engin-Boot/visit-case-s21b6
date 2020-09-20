@@ -31,7 +31,6 @@ namespace Receiver
         private static void AddEventToDs(string inputFromPipe)
         {
             var date = DateTime.Parse(inputFromPipe);
-            Console.WriteLine("Data obtained:Date = {0}, Time = {1}", date.Date, date.TimeOfDay);
             CountSetters.SetHourCount(date);
             CountSetters.SetDayCount(date);
         }

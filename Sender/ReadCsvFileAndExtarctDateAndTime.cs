@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿using System;
 
 namespace Sender
 {
@@ -6,11 +6,11 @@ namespace Sender
     {
         public static string RetrieveCsvFilePath()
         {
-            var csvInputFilePath = Directory.GetCurrentDirectory();
-            var csvFileName = "FootFallEntries.csv";
-            csvInputFilePath += @"\" + csvFileName;
-
-            return csvInputFilePath;
+            var fileName = @"FootFallEntries.csv";
+            var filePath = AppDomain.CurrentDomain.BaseDirectory +  fileName;
+            return filePath;
         }
+
+
     }
 }

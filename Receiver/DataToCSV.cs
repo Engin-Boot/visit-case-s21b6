@@ -1,8 +1,34 @@
-﻿namespace Receiver
+﻿using System;
+using System.IO;
+
+namespace Receiver
 {
     internal class DataToCsv
     {
-        //string filePath = BaseDirectory();
-        //using (StreamWriter sw= new StreamWriter())
+        private static string GetFilePath()
+        {
+            const string fileName = @"Output.csv";
+            var filePath = AppDomain.CurrentDomain.BaseDirectory + fileName;
+            return filePath;
+        }
+        internal static int WriteToCsv(string data)
+        {
+            var filePath = GetFilePath();
+
+            try
+            {
+                using (var sw = new StreamWriter(filePath))
+                {
+                    sw.WriteLine(data);
+                    sw.Close();
+                    return 1;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return 0;
+            }
+        }
     }
 }

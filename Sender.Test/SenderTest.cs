@@ -21,7 +21,7 @@ namespace Sender.Test
             const string eachrow = "01/01/2020,16:23:33";
             var dateAndTimeObj = SplitCsvFileAndReturnData.SplitCsvFileAndReturnDateAndTime(eachrow);
 
-            Assert.True(dateAndTimeObj.dateAndTime.ToString(CultureInfo.InvariantCulture) == "01/01/2020 16:23:33");
+            Assert.True(dateAndTimeObj.Dt.ToString(CultureInfo.InvariantCulture) == "01/01/2020 16:23:33");
         }
 
         [Fact]
@@ -38,14 +38,6 @@ namespace Sender.Test
             var eachrow = "01/12/2020,16:60:33";
 
             Assert.Throws<FormatException>(() => SplitCsvFileAndReturnData.SplitCsvFileAndReturnDateAndTime(eachrow));
-        }
-
-
-        [Fact]
-        public void WhenValidValuePassedToCommPrimitiveDataMemberDateThenDateIsSuccessfullyInitialized()
-        {
-            var obj = new CommPrimitive {Date = new DateTime(2020, 12, 01, 16, 02, 33)};
-            Assert.True(obj.Date.ToString("dd/MM/yyyy HH:mm:ss") == "01/12/2020 16:02:33");
         }
 
         [Fact]

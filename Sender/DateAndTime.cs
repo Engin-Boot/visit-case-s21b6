@@ -4,6 +4,6 @@ namespace Sender
 {
     public class DateAndTime
     {
-        public DateTime dateAndTime { get; set; }
+        public DateTime Dt { get; set; }
     }
 }

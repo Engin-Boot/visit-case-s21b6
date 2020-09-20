@@ -4,6 +4,7 @@ namespace Receiver
 {
     internal class Receiver
     {
+        private static string OutputToFile { get; set; }
         /// <summary>
         ///     Main
         /// </summary>
@@ -17,12 +18,21 @@ namespace Receiver
         /// </summary>
         internal static void OperationsThread()
         {
-            Console.WriteLine("In operations..");
-            var avg = DataProcessor.GetDailyAverage();
-            Console.WriteLine("Average calculated = " + avg);
-            //var avg1 = DataProcessor.GetDailyAverage(new DateTime(2020, 01, 01));
-            DataProcessor.GetHourlyAverage(0);
-            Console.WriteLine(DataProcessor.GetWeeklyAverage(DayOfWeek.Monday));
+            Console.WriteLine("Finished reading from pipe...");
+            Console.WriteLine("Calculating Daily average for the month...");
+            var dailyAverage = DataProcessor.GetAverageForCurrentMonth();
+            OutputToFile = "Daily average for current month=" + dailyAverage + "\n";
+
+            for (int i = 0; i <= 24; i++)
+            {
+                var hourlyAverage = DataProcessor.GetHourlyAverage(i);
+                OutputToFile += "Average footfall at:" + i + "hours is:" + hourlyAverage + "\n";
+            }
+            Console.WriteLine("Calculating average for a Sunday...");
+            var averageForSunday = DataProcessor.GetWeeklyAverage(DayOfWeek.Sunday);
+            Console.WriteLine("Average footfall on a sunday is:"+ averageForSunday);
+            OutputToFile += "Average footfall on a Sunday = " + averageForSunday;
+            DataToCsv.WriteToCsv(OutputToFile);
         }
     }
 }

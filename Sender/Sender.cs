@@ -12,7 +12,7 @@ namespace Sender
         {
             foreach (var entry in dateAndTimeList)
             {
-                var date = entry.dateAndTime;
+                var date = entry.Dt;
                 Console.WriteLine(date.ToString(CultureInfo.InvariantCulture));
             }
 
