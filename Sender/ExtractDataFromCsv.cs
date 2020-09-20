@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Runtime.CompilerServices;
 
 namespace Sender
 {
     public class ExtractDataFromCsv
     {
         public static bool IsDataRetrieved { get; set; }
+
         public static List<DateAndTime> ExtractDateAndTime()
         {
-            List<DateAndTime> allDatesandTime = new List<DateAndTime>();
-            string csvFilePath = ReadCsvFileAndExtarctData.RetrieveCsvFilePath();
-            using (StreamReader dataInCsvFile = new StreamReader(csvFilePath))
+            var allDatesandTime = new List<DateAndTime>();
+            var csvFilePath = ReadCsvFileAndExtarctData.RetrieveCsvFilePath();
+            using (var dataInCsvFile = new StreamReader(csvFilePath))
             {
-
                 dataInCsvFile.ReadLine();
                 string eachRow;
 

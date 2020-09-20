@@ -4,9 +4,8 @@ namespace Receiver
 {
     internal class PipeReader
     {
-
         /// <summary>
-        /// This is used to read input from console
+        ///     This is used to read input from console
         /// </summary>
         internal static void ConsolePipeReader()
         {
@@ -14,24 +13,21 @@ namespace Receiver
             try
             {
                 string inputFromPipe;
-                    while ( (inputFromPipe = Console.ReadLine())  != null )
-                    {
-                        AddEventToDs(inputFromPipe);
-                    }
+                while ((inputFromPipe = Console.ReadLine()) != null) AddEventToDs(inputFromPipe);
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error in reading from the pipe" + e);
             }
+
             Receiver.OperationsThread();
             Console.WriteLine("End of op");
         }
 
         /// <summary>
-        /// This is used to add an even to the DS maintained
+        ///     This is used to add an even to the DS maintained
         /// </summary>
         /// <param name="inputFromPipe"></param>
-
         private static void AddEventToDs(string inputFromPipe)
         {
             var date = DateTime.Parse(inputFromPipe);
@@ -119,5 +115,3 @@ namespace Receiver
 //{
 //    Console.WriteLine("Exception in objects..");
 //}
-
-

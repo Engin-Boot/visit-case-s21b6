@@ -6,57 +6,56 @@ namespace Sender
 {
     public class SplitCsvFileAndReturnData
     {
-        const int dateColumnNumber = 0;
-        const int timeColumnNumber = 1;
+        private const int DateColumnNumber = 0;
+        private const int TimeColumnNumber = 1;
+
         public static DateAndTime SplitCsvFileAndReturnDateAndTime(string eachRow)
         {
-            string[] eachRowOfCsvFile = eachRow.Split(',');
+            var eachRowOfCsvFile = eachRow.Split(',');
 
-            DateAndTime objOfDateAndTime = new DateAndTime();
+            var objOfDateAndTime = new DateAndTime();
 
-            CultureInfo provider = new CultureInfo("en-GB");
+            var provider = new CultureInfo("en-GB");
             Thread.CurrentThread.CurrentCulture = provider;
-            DateTime DateOnly = ExtractDate(eachRowOfCsvFile[dateColumnNumber], provider);
-            DateTime TimeOnly = ExtractTime(eachRowOfCsvFile[timeColumnNumber], provider);
-            
-            objOfDateAndTime.dateAndTime = DateOnly.Date.Add(TimeOnly.TimeOfDay);
+            var dateOnly = ExtractDate(eachRowOfCsvFile[DateColumnNumber], provider);
+            var timeOnly = ExtractTime(eachRowOfCsvFile[TimeColumnNumber], provider);
+
+            objOfDateAndTime.dateAndTime = dateOnly.Date.Add(timeOnly.TimeOfDay);
 
             return objOfDateAndTime;
-
         }
 
-        public static DateTime ExtractDate(string Date ,CultureInfo provider)
+        public static DateTime ExtractDate(string date, CultureInfo provider)
         {
-            DateTime DateOnly;
-            
+            DateTime dateOnly;
+
             try
             {
-                DateOnly = DateTime.ParseExact(Date, "dd/MM/yyyy", provider);
+                dateOnly = DateTime.ParseExact(date, "dd/MM/yyyy", provider);
             }
             catch (FormatException)
             {
-                Console.WriteLine("{0} is not in the correct format.", Date);
+                Console.WriteLine("{0} is not in the correct format.", date);
                 throw new FormatException("You passed incorrect date format.");
-
             }
-            return DateOnly;
+
+            return dateOnly;
         }
 
-        public static DateTime ExtractTime(string Time,CultureInfo provider)
+        public static DateTime ExtractTime(string time, CultureInfo provider)
         {
-            DateTime TimeOnly;
+            DateTime timeOnly;
             try
             {
-                TimeOnly = DateTime.ParseExact(Time, "HH:mm:ss", provider);
-
+                timeOnly = DateTime.ParseExact(time, "HH:mm:ss", provider);
             }
             catch (FormatException)
             {
-                Console.WriteLine("{0} is not in the correct format.", Time);
+                Console.WriteLine("{0} is not in the correct format.", time);
                 throw new FormatException("You passed incorrect time format.");
-
             }
-            return TimeOnly;
+
+            return timeOnly;
         }
     }
 }

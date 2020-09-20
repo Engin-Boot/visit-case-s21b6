@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="CountSetters.cs" />
     <Compile Include="DataProcessor.cs" />
+    <Compile Include="DataToCSV.cs" />
     <Compile Include="PipeReader.cs" />
     <Compile Include="Receiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
