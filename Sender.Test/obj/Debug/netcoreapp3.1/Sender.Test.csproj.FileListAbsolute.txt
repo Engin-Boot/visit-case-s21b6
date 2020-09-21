@@ -92,8 +92,8 @@ C:\Users\320105005\source\repos\visit-case-s21b6\Sender.Test\bin\Debug\netcoreap
 C:\Users\320105005\source\repos\visit-case-s21b6\Sender.Test\obj\Debug\netcoreapp3.1\Sender.Test.csprojAssemblyReference.cache
 C:\Users\320105005\source\repos\visit-case-s21b6\Sender.Test\obj\Debug\netcoreapp3.1\Sender.Test.AssemblyInfoInputs.cache
 C:\Users\320105005\source\repos\visit-case-s21b6\Sender.Test\obj\Debug\netcoreapp3.1\Sender.Test.AssemblyInfo.cs
-C:\Users\320105005\source\repos\visit-case-s21b6\Sender.Test\obj\Debug\netcoreapp3.1\Sender.Test.csproj.CoreCompileInputs.cache
 C:\Users\320105005\source\repos\visit-case-s21b6\Sender.Test\obj\Debug\netcoreapp3.1\Sender.Test.csproj.CopyComplete
 C:\Users\320105005\source\repos\visit-case-s21b6\Sender.Test\obj\Debug\netcoreapp3.1\Sender.Test.dll
 C:\Users\320105005\source\repos\visit-case-s21b6\Sender.Test\obj\Debug\netcoreapp3.1\Sender.Test.pdb
 C:\Users\320105005\source\repos\visit-case-s21b6\Sender.Test\obj\Debug\netcoreapp3.1\Sender.Test.genruntimeconfig.cache
+C:\Users\320105005\source\repos\visit-case-s21b6\Sender.Test\obj\Debug\netcoreapp3.1\Sender.Test.csproj.CoreCompileInputs.cache
