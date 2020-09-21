@@ -15,6 +15,12 @@ namespace Sender.Test
             Assert.True(expectedPath == ReadCsvFileAndExtarctData.RetrieveCsvFilePath());
         }
 
+        //[Fact]
+        //public void WhenFilePathIsIncorrectThenThrowException()
+        //{
+        //    Assert.Throws<FileNotFoundException>(() => ReadCsvFileAndExtarctData.RetrieveCsvFilePath());
+        //}
+
         [Fact]
         public void WhenValidStringIsPassedToSplitCsvFileMethodThenSplitToDateTimeCorrectly()
         {

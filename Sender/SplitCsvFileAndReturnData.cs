@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace Sender
 {
-    public class SplitCsvFileAndReturnData
+    public static class SplitCsvFileAndReturnData
     {
         private const int DateColumnNumber = 0;
         private const int TimeColumnNumber = 1;
@@ -25,7 +25,7 @@ namespace Sender
             return objOfDateAndTime;
         }
 
-        public static DateTime ExtractDate(string date, CultureInfo provider)
+        private static DateTime ExtractDate(string date, CultureInfo provider)
         {
             DateTime dateOnly;
 
@@ -42,7 +42,7 @@ namespace Sender
             return dateOnly;
         }
 
-        public static DateTime ExtractTime(string time, CultureInfo provider)
+        private static DateTime ExtractTime(string time, CultureInfo provider)
         {
             DateTime timeOnly;
             try

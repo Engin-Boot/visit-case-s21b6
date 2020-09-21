@@ -4,9 +4,9 @@ using System.Globalization;
 
 namespace Sender
 {
-    public class Sender
+    public static class Sender
     {
-        public static bool IsMessagePrinted { get; set; }
+        public static bool IsMessagePrinted { get; private set; }
 
         public static void PrintData(List<DateAndTime> dateAndTimeList)
         {

@@ -3,9 +3,9 @@ using System.IO;
 
 namespace Sender
 {
-    public class ExtractDataFromCsv
+    public static class ExtractDataFromCsv
     {
-        public static bool IsDataRetrieved { get; set; }
+        public static bool IsDataRetrieved { get; private set; }
 
         public static List<DateAndTime> ExtractDateAndTime()
         {
@@ -15,19 +15,15 @@ namespace Sender
             using (var dataInCsvFile = new StreamReader(csvFilePath))
             {
                 dataInCsvFile.ReadLine();
-                string eachRow;
 
                 while (!dataInCsvFile.EndOfStream)
                 {
-                    eachRow = dataInCsvFile.ReadLine();
-
+                    string eachRow = dataInCsvFile.ReadLine();
                     allDatesandTime.Add(SplitCsvFileAndReturnData.SplitCsvFileAndReturnDateAndTime(eachRow));
                 }
 
                 IsDataRetrieved = true;
             }
-
-
             return allDatesandTime;
         }
     }
