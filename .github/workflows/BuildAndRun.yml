@@ -19,3 +19,5 @@ jobs:
       run: dotnet build --configuration Release
     - name: Run unit tests
       run: dotnet test --no-build --configuration Release
+    - name: Run the Pipe Command
+      run:  Sender\bin\Release\netcoreapp3.1\Sender.exe | Receiver\bin\Release\netcoreapp3.1\Receiver.exe
