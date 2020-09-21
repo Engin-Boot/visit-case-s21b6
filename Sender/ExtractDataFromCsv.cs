@@ -10,6 +10,7 @@ namespace Sender
         public static List<DateAndTime> ExtractDateAndTime()
         {
             var allDatesandTime = new List<DateAndTime>();
+            IsDataRetrieved = false;
             var csvFilePath = ReadCsvFileAndExtarctData.RetrieveCsvFilePath();
             using (var dataInCsvFile = new StreamReader(csvFilePath))
             {
