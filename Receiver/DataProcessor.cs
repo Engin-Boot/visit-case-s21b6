@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Receiver
 {
-    internal class DataProcessor
+    public class DataProcessor
     {
         /// <summary>
         /// Gets the number of Weeks between the 2 dates
@@ -34,7 +34,7 @@ namespace Receiver
             return GetDailyAverage(currentDate);
         }
         /// <summary>
-        ///     This method gets the daily average. By default, it calculates daily average from 1st Jan 2000
+        /// This method gets the daily average. By default, it calculates daily average from 1st Jan 2000
         /// </summary>
         /// <returns></returns>
         internal static double GetDailyAverage()
@@ -53,8 +53,14 @@ namespace Receiver
             var obj = from a in CountSetters.DailyCount where a.Key >= date select a.Value;
             try
             {
-                var avg = obj.Average(a => a);
-                return avg;
+                var lastEntry = CountSetters.DailyCount.ElementAt(CountSetters.DailyCount.Count - 1).Key;
+                var numberOfDays = (lastEntry - date).TotalDays;
+                var totalCount = obj.Sum(a => a);
+                return ((double)totalCount / numberOfDays);
+
+
+                //var avg = obj.Average(a => a);
+                //return avg;
             }
             catch (Exception e)
             {

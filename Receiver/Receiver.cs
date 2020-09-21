@@ -20,9 +20,11 @@ namespace Receiver
         {
             Console.WriteLine("Finished reading from pipe...");
             Console.WriteLine("Calculating Daily average for the month...");
-            var dailyAverage = DataProcessor.GetAverageForCurrentMonth();
-            OutputToFile = "Daily average for current month=" + dailyAverage + "\n";
-
+            var dailyAvgCurrMonth = DataProcessor.GetAverageForCurrentMonth();
+            OutputToFile = "Daily average for current month=" + dailyAvgCurrMonth + "\n";
+            Console.WriteLine("Calculating daily average from 2000 Jan");
+            var dailyAverage = DataProcessor.GetDailyAverage();
+            OutputToFile += "Daily average = " + dailyAverage + "\n";
             for (int i = 0; i <= 24; i++)
             {
                 var hourlyAverage = DataProcessor.GetHourlyAverage(i);

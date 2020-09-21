@@ -21,7 +21,6 @@ namespace Receiver
             }
 
             Receiver.OperationsThread();
-            Console.WriteLine("End of op");
         }
 
         /// <summary>
