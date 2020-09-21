@@ -35,3 +35,5 @@ D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\obj\Debug\n
 D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\obj\Debug\netcoreapp2.1\Receiver.Test.csproj.CopyComplete
 D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\obj\Debug\netcoreapp2.1\Receiver.Test.dll
 D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\obj\Debug\netcoreapp2.1\Receiver.Test.pdb
+C:\Users\320105005\source\repos\visit-case-s21b6\Receiver.Test\bin\Debug\netcoreapp2.1\testhost.exe
+C:\Users\320105005\source\repos\visit-case-s21b6\Receiver.Test\bin\Debug\netcoreapp2.1\testhost.dll
