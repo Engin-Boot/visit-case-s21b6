@@ -11,7 +11,7 @@ namespace Receiver
         /// </summary>
         /// <param name="date1"></param>
         /// <param name="date2"></param>
-        private static int GetNumberOfWeeks(DateTime date1, DateTime date2)
+        public static int GetNumberOfWeeks(DateTime date1, DateTime date2)
         {
             try
             {
@@ -26,7 +26,7 @@ namespace Receiver
             }
         }
 
-        internal static double GetAverageForCurrentMonth()
+        public static double GetAverageForCurrentMonth()
         {
             var currentMonth = DateTime.Now.Month;
             var currentYear = DateTime.Now.Year;
@@ -37,7 +37,7 @@ namespace Receiver
         /// This method gets the daily average. By default, it calculates daily average from 1st Jan 2000
         /// </summary>
         /// <returns></returns>
-        internal static double GetDailyAverage()
+        public static double GetDailyAverage()
         {
             var date = new DateTime(2000, 01, 01);
             return GetDailyAverage(date);
@@ -48,7 +48,7 @@ namespace Receiver
         /// </summary>
         /// <param name="date"> Start date for average to be computed</param>
         /// <returns>average</returns>
-        internal static double GetDailyAverage(DateTime date)
+        public static double GetDailyAverage(DateTime date)
         {
             var obj = from a in CountSetters.DailyCount where a.Key >= date select a.Value;
             try
@@ -74,7 +74,7 @@ namespace Receiver
         /// </summary>
         /// <param name="hour"></param>
         /// <returns></returns>
-        internal static double GetHourlyAverage(int hour)
+        public static double GetHourlyAverage(int hour)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace Receiver
         /// </summary>
         /// <param name="hour"></param>
         /// <returns></returns>
-        internal static int GetCountOfHour(int hour)
+        public static int GetCountOfHour(int hour)
         {
             return CountSetters.HourlyCount.ContainsKey(hour) ? CountSetters.HourlyCount[hour] : 0;
         }
@@ -107,7 +107,7 @@ namespace Receiver
         /// </summary>
         /// <param name="day"></param>
         /// <returns></returns>
-        internal static double GetWeeklyAverage(DayOfWeek day)
+        public static double GetWeeklyAverage(DayOfWeek day)
         {
             var en = from a in CountSetters.DailyCount where a.Key.DayOfWeek == day select a.Value;
             var totalCount = en.Sum();

@@ -3,15 +3,15 @@ using System.IO;
 
 namespace Receiver
 {
-    internal class DataToCsv
+    public class DataToCsv
     {
-        private static string GetFilePath()
+        public static string GetFilePath()
         {
             const string fileName = @"Output.csv";
             var filePath = AppDomain.CurrentDomain.BaseDirectory + fileName;
             return filePath;
         }
-        internal static int WriteToCsv(string data)
+        public static int WriteToCsv(string data)
         {
             var filePath = GetFilePath();
 

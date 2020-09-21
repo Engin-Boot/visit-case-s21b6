@@ -2,12 +2,12 @@
 
 namespace Receiver
 {
-    internal class PipeReader
+    public class PipeReader
     {
         /// <summary>
         ///     This is used to read input from console
         /// </summary>
-        internal static void ConsolePipeReader()
+        public static void ConsolePipeReader()
         {
             Console.WriteLine("In pipe");
             try
@@ -27,7 +27,7 @@ namespace Receiver
         ///     This is used to add an even to the DS maintained
         /// </summary>
         /// <param name="inputFromPipe"></param>
-        private static void AddEventToDs(string inputFromPipe)
+        public static void AddEventToDs(string inputFromPipe)
         {
             var date = DateTime.Parse(inputFromPipe);
             CountSetters.SetHourCount(date);
