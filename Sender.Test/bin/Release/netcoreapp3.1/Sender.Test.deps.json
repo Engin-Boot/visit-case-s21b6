@@ -691,7 +691,7 @@
       },
       "Sender/1.0.0": {
         "runtime": {
-          "Sender.exe": {}
+          "Sender.dll": {}
         }
       }
     }
