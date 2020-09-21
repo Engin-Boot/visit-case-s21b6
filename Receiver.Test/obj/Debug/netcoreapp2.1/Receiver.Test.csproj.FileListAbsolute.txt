@@ -17,3 +17,21 @@ C:\Users\320105005\source\repos\visit-case-s21b6\Receiver.Test\obj\Debug\netcore
 C:\Users\320105005\source\repos\visit-case-s21b6\Receiver.Test\obj\Debug\netcoreapp2.1\Receiver.Test.dll
 C:\Users\320105005\source\repos\visit-case-s21b6\Receiver.Test\obj\Debug\netcoreapp2.1\Receiver.Test.pdb
 C:\Users\320105005\source\repos\visit-case-s21b6\Receiver.Test\obj\Debug\netcoreapp2.1\Receiver.Test.genruntimeconfig.cache
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\bin\Debug\netcoreapp2.1\Receiver.Test.deps.json
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\bin\Debug\netcoreapp2.1\Receiver.Test.runtimeconfig.json
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\bin\Debug\netcoreapp2.1\Receiver.Test.runtimeconfig.dev.json
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\bin\Debug\netcoreapp2.1\Receiver.Test.dll
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\bin\Debug\netcoreapp2.1\Receiver.Test.pdb
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\bin\Debug\netcoreapp2.1\Receiver.exe
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\bin\Debug\netcoreapp2.1\Receiver.pdb
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\bin\Debug\netcoreapp2.1\Receiver.exe.config
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\obj\Debug\netcoreapp2.1\Receiver.Test.csprojAssemblyReference.cache
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\obj\Debug\netcoreapp2.1\Receiver.Test.csproj.CoreCompileInputs.cache
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\obj\Debug\netcoreapp2.1\Receiver.Test.AssemblyInfoInputs.cache
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\obj\Debug\netcoreapp2.1\Receiver.Test.AssemblyInfo.cs
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\obj\Debug\netcoreapp2.1\Receiver.Test.csproj.CopyComplete
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\obj\Debug\netcoreapp2.1\Receiver.Test.dll
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver.Test\obj\Debug\netcoreapp2.1\Receiver.Test.pdb

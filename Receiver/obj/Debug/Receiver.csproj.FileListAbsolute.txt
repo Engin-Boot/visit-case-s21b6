@@ -22,3 +22,27 @@ C:\Users\320105005\source\repos\visit-case-s21b6\Receiver\obj\Debug\Receiver.csp
 C:\Users\320105005\source\repos\visit-case-s21b6\Receiver\obj\Debug\Receiver.csproj.CopyComplete
 C:\Users\320105005\source\repos\visit-case-s21b6\Receiver\obj\Debug\Receiver.exe
 C:\Users\320105005\source\repos\visit-case-s21b6\Receiver\obj\Debug\Receiver.pdb
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\Receiver.exe.config
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\Receiver.exe
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\Receiver.pdb
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\System.Buffers.dll
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\System.Memory.dll
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\System.Numerics.Vectors.dll
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\System.Text.Encodings.Web.dll
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\System.ValueTuple.dll
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\System.Buffers.xml
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\System.Memory.xml
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\System.Numerics.Vectors.xml
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\System.Text.Encodings.Web.xml
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\bin\Debug\System.ValueTuple.xml
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\obj\Debug\Receiver.csprojAssemblyReference.cache
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\obj\Debug\Receiver.csproj.CoreCompileInputs.cache
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\obj\Debug\Receiver.csproj.CopyComplete
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\obj\Debug\Receiver.exe
+D:\Work\Training\Bootcamp\Bootcamp Code\VisitorCounter\Receiver\obj\Debug\Receiver.pdb

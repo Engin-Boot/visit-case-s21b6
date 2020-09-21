@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Receiver
 {
-    public class DataProcessor
+    public static class DataProcessor
     {
         /// <summary>
         /// Gets the number of Weeks between the 2 dates
@@ -15,8 +15,8 @@ namespace Receiver
         {
             try
             {
-                var numberOfWeeks = (int) (Math.Abs((date1 - date2).TotalDays) / 7);
-                return numberOfWeeks ;
+                var numberOfWeeks = (int)(Math.Abs((date1 - date2).TotalDays) / 7);
+                return numberOfWeeks;
             }
 
             catch
@@ -50,17 +50,13 @@ namespace Receiver
         /// <returns>average</returns>
         public static double GetDailyAverage(DateTime date)
         {
+            var todaysDate = DateTime.Today;
             var obj = from a in CountSetters.DailyCount where a.Key >= date select a.Value;
             try
             {
-                var lastEntry = CountSetters.DailyCount.ElementAt(CountSetters.DailyCount.Count - 1).Key;
-                var numberOfDays = (lastEntry - date).TotalDays;
+                var numberOfDays = (todaysDate - date).TotalDays + 1;
                 var totalCount = obj.Sum(a => a);
                 return ((double)totalCount / numberOfDays);
-
-
-                //var avg = obj.Average(a => a);
-                //return avg;
             }
             catch (Exception e)
             {
@@ -68,21 +64,15 @@ namespace Receiver
                 return 0;
             }
         }
-
-        /// <summary>
-        ///     This method gets Hourly average for month
-        /// </summary>
-        /// <param name="hour"></param>
-        /// <returns></returns>
         public static double GetHourlyAverage(int hour)
         {
             try
             {
                 var count = GetCountOfHour(hour);
-                var date1  = CountSetters.DailyCount.ElementAt(0).Key;
-                var date2  = CountSetters.DailyCount.ElementAt(CountSetters.DailyCount.Count - 1).Key;
-                var numberOfWeeks = GetNumberOfWeeks(date1, date2);
-                var avg = (double) count / numberOfWeeks;
+                var endDate = DateTime.Today;
+                var StartDate = CountSetters.DailyCount.ElementAt(0).Key;
+                var numberOfDays = Math.Abs((StartDate - endDate).TotalDays) + 1;
+                var avg = (double)count / numberOfDays;
                 return avg;
             }
             catch (Exception e)
@@ -93,7 +83,7 @@ namespace Receiver
         }
 
         /// <summary>
-        ///     This method gets the count of given hour
+        /// This method gets the count of given hour
         /// </summary>
         /// <param name="hour"></param>
         /// <returns></returns>
@@ -119,7 +109,7 @@ namespace Receiver
 
             var latestEntry = CountSetters.DailyCount.ElementAt(CountSetters.DailyCount.Count - 1).Key;
             var weekNum = cul.Calendar.GetWeekOfYear(latestEntry, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
-            return (double) totalCount / weekNum;
+            return (double)totalCount / weekNum;
         }
     }
 }
