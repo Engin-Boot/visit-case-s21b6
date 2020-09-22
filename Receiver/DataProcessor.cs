@@ -50,13 +50,13 @@ namespace Receiver
         /// <returns>average</returns>
         public static double GetDailyAverage(DateTime date)
         {
-            var todaysDate = DateTime.Today;
+            var todayDate = DateTime.Today;
             var obj = from a in CountSetters.DailyCount where a.Key >= date select a.Value;
             try
             {
-                var numberOfDays = (todaysDate - date).TotalDays + 1;
+                var numberOfDays = (todayDate - date).TotalDays + 1;
                 var totalCount = obj.Sum(a => a);
-                return ((double)totalCount / numberOfDays);
+                return (totalCount / numberOfDays);
             }
             catch (Exception e)
             {
@@ -70,9 +70,9 @@ namespace Receiver
             {
                 var count = GetCountOfHour(hour);
                 var endDate = DateTime.Today;
-                var StartDate = CountSetters.DailyCount.ElementAt(0).Key;
-                var numberOfDays = Math.Abs((StartDate - endDate).TotalDays) + 1;
-                var avg = (double)count / numberOfDays;
+                var startDate = CountSetters.DailyCount.ElementAt(0).Key;
+                var numberOfDays = Math.Abs((startDate - endDate).TotalDays) + 1;
+                var avg = count / numberOfDays;
                 return avg;
             }
             catch (Exception e)

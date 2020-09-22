@@ -1,20 +1,25 @@
 using System;
+using System.Globalization;
 using Xunit;
 
-namespace Receiver.Tests
+namespace Receiver.Test
 {
     public class ReceiverTests
     {
+
+       
+
         [Fact]
         public void WhenTwoDatesArePassedCheckIfNumberOfWeeksIsCorrect()
         {
             var date1 = new DateTime(2020, 09, 14);
             var date2 = new DateTime(2020, 09, 21);
-            var numberOfWeeks = WhenTwoDatesArePassedCheckIfNumberOfWeeksIsCorrectGen(date1, date1);
+            var numberOfWeeks = WhenTwoDatesArePassedCheckIfNumberOfWeeksIsCorrectGen(date1, date2);
             Assert.False(2 == numberOfWeeks);
         }
 
-        private int WhenTwoDatesArePassedCheckIfNumberOfWeeksIsCorrectGen(DateTime date1, DateTime date2)
+        
+        private  static int WhenTwoDatesArePassedCheckIfNumberOfWeeksIsCorrectGen(DateTime date1, DateTime date2)
         {
             var numberOfWeeks = DataProcessor.GetNumberOfWeeks(date1, date2);
             return numberOfWeeks;
@@ -73,7 +78,7 @@ namespace Receiver.Tests
             CountSetters.DailyCount.Clear();
             CountSetters.HourlyCount.Clear();
             var date1 = new DateTime(2020, 10, 12, 10, 11, 14);
-            var pipeIp = date1.ToString();
+            var pipeIp = date1.ToString(CultureInfo.InvariantCulture);
             PipeReader.AddEventToDs(pipeIp);
             var dayCount = CountSetters.DailyCount.Count;
             var hourCount = CountSetters.HourlyCount.Count;
@@ -87,7 +92,7 @@ namespace Receiver.Tests
         {
             SetTestData();
             var dailyAverageForMonth = DataProcessor.GetAverageForCurrentMonth();
-            Assert.True(dailyAverageForMonth == ((double)4 / 22));
+            Assert.True(Math.Abs(dailyAverageForMonth - ((double)4 / 22)) < Double.Epsilon);
             CountSetters.DailyCount.Clear();
             CountSetters.HourlyCount.Clear();
         }
@@ -97,7 +102,7 @@ namespace Receiver.Tests
         {
             SetTestData();
             var dailyAverage = DataProcessor.GetDailyAverage();
-            Assert.True((double)7 / 7571 == dailyAverage);
+            Assert.True(Math.Abs((double)7 / 7571 - dailyAverage) < double.Epsilon);
             CountSetters.DailyCount.Clear();
             CountSetters.HourlyCount.Clear();
         }
@@ -108,8 +113,7 @@ namespace Receiver.Tests
             SetTestData();
             var averageFrom2020 = DataProcessor.GetDailyAverage(new DateTime(2020, 01, 01));
 
-            Console.WriteLine(DataProcessor.GetDailyAverage(new DateTime(2020, 01, 01)));
-            Assert.True((double)4 / 266 == averageFrom2020);
+            Assert.True(Math.Abs((double)4 / 266 - averageFrom2020) < Double.Epsilon);
             CountSetters.DailyCount.Clear();
             CountSetters.HourlyCount.Clear();
         }
@@ -119,7 +123,7 @@ namespace Receiver.Tests
         {
             SetTestData();
             var hourlyAverage = DataProcessor.GetHourlyAverage(0);
-            Assert.True(hourlyAverage == (double)1 / 11);
+            Assert.True(Math.Abs(hourlyAverage - (double)1 / 11) < double.Epsilon);
             CountSetters.DailyCount.Clear();
             CountSetters.HourlyCount.Clear();
         }
@@ -129,7 +133,7 @@ namespace Receiver.Tests
         {
             SetTestData();
             var averageForSunday = DataProcessor.GetWeeklyAverage(DayOfWeek.Saturday);
-            Assert.True(averageForSunday == (double)1 / 39);
+            Assert.True(Math.Abs(averageForSunday - (double)1 / 39) < double.Epsilon);
             CountSetters.DailyCount.Clear();
             CountSetters.HourlyCount.Clear();
         }
