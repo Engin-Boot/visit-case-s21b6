@@ -11,9 +11,9 @@ function WriteXmlToScreen ([xml]$xml)
     Write-Output $StringWriter.ToString();
 }
 
-$report = Get-Content -Path Sender.Test\TestResults\*\coverage.cobertura.xml | Out-String
+$report_of_sender = Get-Content -Path  Sender.Test\TestResults\*\coverage.cobertura.xml | Out-String
 Write-Host "---------------------------------"
-Write-Host "Code Coverage report of SenderTest..." 
+Write-Host "Code Coverage report of SenderTest ..." 
 Write-Host "---------------------------------"
 WriteXmlToScreen $report_of_sender
 
@@ -26,15 +26,16 @@ Write-Host "---------------------------------"
 
 $result_sender = 0
 
-Write-Host "Line-Coverage: ["$doc.coverage.'line-rate'"] Branch-Coverage: ["$doc.coverage.'branch-rate'"]"
+Write-Host "Line-Coverage: ["$doc_sender.coverage.'line-rate'"] Branch-Coverage: ["$doc_sender.coverage.'branch-rate'"]"
 Write-Host ""
- foreach ($pkg in $doc.coverage.packages.package) {
+ foreach ($pkg in $doc_sender.coverage.packages.package) {
     Write-Host "Package:"  $pkg.name "Line-Coverage:"$pkg.'line-rate'
 
     if($pkg.'line-rate' -lt $linerate){
         $result_sender= 1
        }
     }
+
 
 $report_of_receiver = Get-Content -Path  Receiver.Test\TestResults\*\coverage.cobertura.xml | Out-String
 Write-Host "---------------------------------"
