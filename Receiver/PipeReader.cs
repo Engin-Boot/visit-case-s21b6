@@ -2,7 +2,7 @@
 
 namespace Receiver
 {
-    public class PipeReader
+    public static class PipeReader
     {
         /// <summary>
         ///     This is used to read input from console

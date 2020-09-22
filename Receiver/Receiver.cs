@@ -2,7 +2,7 @@ using System;
 
 namespace Receiver
 {
-    internal class Receiver
+    internal static class Receiver
     {
         private static string OutputToFile { get; set; }
         /// <summary>

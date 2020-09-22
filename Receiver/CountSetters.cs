@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Receiver
 {
-    public class CountSetters
+    public static class CountSetters
     {
         //Daily count (Date-count)
-        public static Dictionary<DateTime, int> DailyCount = new Dictionary<DateTime, int>();
+        public static readonly Dictionary<DateTime, int> DailyCount = new Dictionary<DateTime, int>();
 
         //Hourly count (Hour - count)
-        public static Dictionary<int, int> HourlyCount = new Dictionary<int, int>();
+        public static readonly Dictionary<int, int> HourlyCount = new Dictionary<int, int>();
 
         /// <summary>
         ///     This method updates counter value in Daily count

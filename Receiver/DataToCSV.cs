@@ -3,31 +3,27 @@ using System.IO;
 
 namespace Receiver
 {
-    public class DataToCsv
+    public static class DataToCsv
     {
-        public static string GetFilePath()
+        private static string GetFilePath()
         {
             const string fileName = @"Output.csv";
             var filePath = AppDomain.CurrentDomain.BaseDirectory + fileName;
             return filePath;
         }
-        public static int WriteToCsv(string data)
+        public static void WriteToCsv(string data)
         {
             var filePath = GetFilePath();
 
             try
             {
-                using (var sw = new StreamWriter(filePath))
-                {
-                    sw.WriteLine(data);
-                    sw.Close();
-                    return 1;
-                }
+                using var sw = new StreamWriter(filePath);
+                sw.WriteLine(data);
+                sw.Close();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return 0;
             }
         }
     }

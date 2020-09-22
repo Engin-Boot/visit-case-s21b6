@@ -87,7 +87,7 @@ namespace Receiver
         /// </summary>
         /// <param name="hour"></param>
         /// <returns></returns>
-        public static int GetCountOfHour(int hour)
+        private static int GetCountOfHour(int hour)
         {
             return CountSetters.HourlyCount.ContainsKey(hour) ? CountSetters.HourlyCount[hour] : 0;
         }
