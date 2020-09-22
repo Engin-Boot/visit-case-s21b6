@@ -87,7 +87,7 @@ namespace Receiver.Tests
         {
             SetTestData();
             var dailyAverageForMonth = DataProcessor.GetAverageForCurrentMonth();
-            Assert.True(dailyAverageForMonth == ((double)4 / 21));
+            Assert.True(dailyAverageForMonth == ((double)4 / 22));
             CountSetters.DailyCount.Clear();
             CountSetters.HourlyCount.Clear();
         }
@@ -97,7 +97,7 @@ namespace Receiver.Tests
         {
             SetTestData();
             var dailyAverage = DataProcessor.GetDailyAverage();
-            Assert.True((double)7 / 7570 == dailyAverage);
+            Assert.True((double)7 / 7571 == dailyAverage);
             CountSetters.DailyCount.Clear();
             CountSetters.HourlyCount.Clear();
         }
@@ -107,7 +107,9 @@ namespace Receiver.Tests
         {
             SetTestData();
             var averageFrom2020 = DataProcessor.GetDailyAverage(new DateTime(2020, 01, 01));
-            Assert.True((double)4 / 265 == averageFrom2020);
+
+            Console.WriteLine(DataProcessor.GetDailyAverage(new DateTime(2020, 01, 01)));
+            Assert.True((double)4 / 266 == averageFrom2020);
             CountSetters.DailyCount.Clear();
             CountSetters.HourlyCount.Clear();
         }
@@ -117,7 +119,7 @@ namespace Receiver.Tests
         {
             SetTestData();
             var hourlyAverage = DataProcessor.GetHourlyAverage(0);
-            Assert.True(hourlyAverage == (double)1 / 10);
+            Assert.True(hourlyAverage == (double)1 / 11);
             CountSetters.DailyCount.Clear();
             CountSetters.HourlyCount.Clear();
         }
