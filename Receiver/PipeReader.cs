@@ -15,10 +15,6 @@ namespace Receiver
                 string inputFromPipe;
                 while ((inputFromPipe = Console.ReadLine()) != null)
                 {
-                    if(inputFromPipe.Equals(" ") || inputFromPipe == "")
-                    {
-                        break;
-                    }
                     AddEventToDs(inputFromPipe);
                     
                 }
