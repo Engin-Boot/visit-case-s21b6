@@ -13,7 +13,15 @@ namespace Receiver
             try
             {
                 string inputFromPipe;
-                while ((inputFromPipe = Console.ReadLine()) != null) AddEventToDs(inputFromPipe);
+                while ((inputFromPipe = Console.ReadLine()) != null)
+                {
+                    if(inputFromPipe.Equals(" ") || inputFromPipe == "")
+                    {
+                        break;
+                    }
+                    AddEventToDs(inputFromPipe);
+                    
+                }
             }
             catch (Exception e)
             {

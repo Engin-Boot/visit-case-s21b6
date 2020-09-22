@@ -13,17 +13,9 @@ namespace Receiver
         /// <param name="date2"></param>
         public static int GetNumberOfWeeks(DateTime date1, DateTime date2)
         {
-            try
-            {
                 var numberOfWeeks = (int)(Math.Abs((date1 - date2).TotalDays) / 7);
                 return numberOfWeeks;
-            }
 
-            catch
-            {
-                Console.WriteLine("Not able to calculate number of weeks ");
-                return 0;
-            }
         }
 
         public static double GetAverageForCurrentMonth()
@@ -52,18 +44,11 @@ namespace Receiver
         {
             var todayDate = DateTime.Today;
             var obj = from a in CountSetters.DailyCount where a.Key >= date select a.Value;
-            try
-            {
-                var numberOfDays = (todayDate - date).TotalDays + 1;
-                var totalCount = obj.Sum(a => a);
-                return (totalCount / numberOfDays);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error in calculating Daily Average" + e);
-                return 0;
-            }
+            var numberOfDays = (todayDate - date).TotalDays + 1;
+            var totalCount = obj.Sum(a => a);
+            return (totalCount / numberOfDays);
         }
+
         public static double GetHourlyAverage(int hour)
         {
             try
