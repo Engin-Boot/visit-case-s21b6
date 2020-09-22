@@ -7,7 +7,7 @@ namespace Receiver.Test
     public class ReceiverTests
     {
 
-       
+
 
         [Fact]
         public void WhenTwoDatesArePassedCheckIfNumberOfWeeksIsCorrect()
@@ -18,8 +18,8 @@ namespace Receiver.Test
             Assert.False(2 == numberOfWeeks);
         }
 
-        
-        private  static int WhenTwoDatesArePassedCheckIfNumberOfWeeksIsCorrectGen(DateTime date1, DateTime date2)
+
+        private static int WhenTwoDatesArePassedCheckIfNumberOfWeeksIsCorrectGen(DateTime date1, DateTime date2)
         {
             var numberOfWeeks = DataProcessor.GetNumberOfWeeks(date1, date2);
             return numberOfWeeks;

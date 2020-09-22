@@ -32,7 +32,7 @@ namespace Receiver
             }
             Console.WriteLine("Calculating average for a Sunday...");
             var averageForSunday = DataProcessor.GetWeeklyAverage(DayOfWeek.Sunday);
-            Console.WriteLine("Average footfall on a sunday is:"+ averageForSunday);
+            Console.WriteLine("Average footfall on a sunday is:" + averageForSunday);
             OutputToFile += "Average footfall on a Sunday = " + averageForSunday;
             DataToCsv.WriteToCsv(OutputToFile);
         }
