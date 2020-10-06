@@ -19,6 +19,7 @@ namespace Receiver
                     
                 }
             }
+            //Check Console.ReadLine() documentation exception
             catch (Exception e)
             {
                 Console.WriteLine("Error in reading from the pipe" + e);
@@ -28,7 +29,7 @@ namespace Receiver
         }
 
         /// <summary>
-        ///     This is used to add an even to the DS maintained
+        /// This is used to add an event to the DS maintained
         /// </summary>
         /// <param name="inputFromPipe"></param>
         public static void AddEventToDs(string inputFromPipe)
@@ -39,6 +40,15 @@ namespace Receiver
         }
     }
 }
+
+
+
+
+
+
+
+
+
 
 //try
 //{

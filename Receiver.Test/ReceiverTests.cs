@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Linq;
 using Xunit;
 using static System.Double;
 
@@ -19,6 +20,7 @@ namespace Receiver.Test
             Assert.False(2 == numberOfWeeks);
         }
 
+        
         [Fact]
         public void CheckFileSystem()
         {
@@ -31,7 +33,7 @@ namespace Receiver.Test
         {
             const string fileName = @"Output.csv";
             var filePath = AppDomain.CurrentDomain.BaseDirectory + fileName;
-            Assert.True(filePath.Equals(DataToCsv.GetFilePath()));
+            Assert.Equal(filePath, DataToCsv.GetFilePath());
         }
 
 
@@ -64,6 +66,7 @@ namespace Receiver.Test
         }
 
         [Fact]
+        //Use helper functions in tests. Property Based testing: Look it up.
         public void WhenSetHourCounterAddsCountCheckValidity()
         {
             CountSetters.DailyCount.Clear();
@@ -104,11 +107,21 @@ namespace Receiver.Test
         }
 
         [Fact]
+        public void CheckNumberOfDaysBetweenDates()
+        {
+            var date1 = DateTime.Now;
+            var date2 = DateTime.Now.AddDays(-1);
+            var numberOfDays = DataProcessor.GetNumberOfDaysBetweenDates(date1, date2);
+            Assert.True(numberOfDays == 2);
+        }
+
+        [Fact]
         public void CheckMonthlyAverage()
         {
             SetTestData();
             var dailyAverageForMonth = DataProcessor.GetAverageForCurrentMonth();
-            Assert.True(Math.Abs(dailyAverageForMonth - ((double)4 / 22)) < Epsilon);
+            DateTime date = GetTodaysDate();
+            Assert.True(Math.Abs(dailyAverageForMonth - ((double)0 / 22)) < Epsilon);
             CountSetters.DailyCount.Clear();
             CountSetters.HourlyCount.Clear();
         }
@@ -118,7 +131,10 @@ namespace Receiver.Test
         {
             SetTestData();
             var dailyAverage = DataProcessor.GetDailyAverage();
-            Assert.True(Math.Abs((double)7 / 7571 - dailyAverage) < Epsilon);
+            DateTime date1 = new DateTime(2000, 01, 01);
+            DateTime date2 = DateTime.Now.Date;
+            var numberOfDays = DataProcessor.GetNumberOfDaysBetweenDates(date1, date2) ;
+            Assert.True(Math.Abs((double) 7/ numberOfDays - dailyAverage) < Epsilon);
             CountSetters.DailyCount.Clear();
             CountSetters.HourlyCount.Clear();
         }
@@ -128,8 +144,10 @@ namespace Receiver.Test
         {
             SetTestData();
             var averageFrom2020 = DataProcessor.GetDailyAverage(new DateTime(2020, 01, 01));
-
-            Assert.True(Math.Abs((double)4 / 266 - averageFrom2020) < Epsilon);
+            var date1 = DateTime.Now.Date;
+            var date2 = new DateTime(2020, 01, 01);
+            var numberOfDays = DataProcessor.GetNumberOfDaysBetweenDates(date1, date2);
+            Assert.True(Math.Abs((double)4 / numberOfDays - averageFrom2020) < Epsilon);
             CountSetters.DailyCount.Clear();
             CountSetters.HourlyCount.Clear();
         }
@@ -139,7 +157,10 @@ namespace Receiver.Test
         {
             SetTestData();
             var hourlyAverage = DataProcessor.GetHourlyAverage(0);
-            Assert.True(Math.Abs(hourlyAverage - (double)1 / 11) < Epsilon);
+            var date1 = CountSetters.DailyCount.ElementAt(0).Key;
+            var date2 = GetTodaysDate();
+            var numberOfDays = DataProcessor.GetNumberOfDaysBetweenDates(date1, date2);
+            Assert.True(Math.Abs(hourlyAverage - (double)1 / numberOfDays) < Epsilon);
             CountSetters.DailyCount.Clear();
             CountSetters.HourlyCount.Clear();
         }
@@ -194,6 +215,11 @@ namespace Receiver.Test
             CountSetters.SetHourCount(date5);
             CountSetters.SetHourCount(date6);
             CountSetters.SetHourCount(date7);
+        }
+
+        private DateTime GetTodaysDate()
+        {
+            return DateTime.Now;
         }
 
 

@@ -16,6 +16,7 @@ namespace Sender.Test
         }
 
         [Fact]
+        //What is valid? Specify what is valid 
         public void WhenValidStringIsPassedToSplitCsvFileMethodThenSplitToDateTimeCorrectly()
         {
             const string eachrow = "01/01/2020,16:23:33";
@@ -41,6 +42,7 @@ namespace Sender.Test
         }
 
         [Fact]
+        //Count needs to be specific? 
         public void WhenExtractDateAndTimeIsCalledThenDataIsRetrieved()
         {
             var allDatesandTime = ExtractDataFromCsv.ExtractDateAndTime();

@@ -14,10 +14,20 @@ namespace Receiver
         public static int WriteToCsv(string data)
         {
             var filePath = GetFilePath();
-            using var sw = new StreamWriter(filePath);
-                sw.WriteLine(data);
-                sw.Close();
-                return 1;
+            try
+            {
+                using (var sw = new StreamWriter(filePath))
+                {
+                    sw.WriteLine(data);
+                    sw.Close();
+                    return 1;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error in writing to CSV" + e);
+                return 0;
+            }
             
         }
     }

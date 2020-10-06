@@ -6,6 +6,11 @@ namespace Receiver
 {
     public static class DataProcessor
     {
+        public static int GetNumberOfDaysBetweenDates(DateTime date1 , DateTime date2)
+        {
+            var numberOfDays = (int)Math.Abs((date1.Date - date2.Date).TotalDays);
+            return numberOfDays + 1;
+        }
         /// <summary>
         /// Gets the number of Weeks between the 2 dates
         /// </summary>
@@ -44,9 +49,9 @@ namespace Receiver
         {
             var todayDate = DateTime.Today;
             var obj = from a in CountSetters.DailyCount where a.Key >= date select a.Value;
-            var numberOfDays = (todayDate - date).TotalDays + 1;
+            var numberOfDays = GetNumberOfDaysBetweenDates(todayDate, date);
             var totalCount = obj.Sum(a => a);
-            return (totalCount / numberOfDays);
+            return ((double)totalCount / numberOfDays);
         }
 
         public static double GetHourlyAverage(int hour)
@@ -56,8 +61,8 @@ namespace Receiver
                 var count = GetCountOfHour(hour);
                 var endDate = DateTime.Today;
                 var startDate = CountSetters.DailyCount.ElementAt(0).Key;
-                var numberOfDays = Math.Abs((startDate - endDate).TotalDays) + 1;
-                var avg = count / numberOfDays;
+                var numberOfDays = GetNumberOfDaysBetweenDates(startDate, endDate);
+                var avg = (double) count / numberOfDays;
                 return avg;
             }
             catch (Exception e)

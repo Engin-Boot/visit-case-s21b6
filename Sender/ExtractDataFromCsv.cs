@@ -12,17 +12,19 @@ namespace Sender
             var allDatesandTime = new List<DateAndTime>();
             IsDataRetrieved = false;
             var csvFilePath = ReadCsvFileAndExtarctData.RetrieveCsvFilePath();
-            using var dataInCsvFile = new StreamReader(csvFilePath);
-            dataInCsvFile.ReadLine();
-
-            while (!dataInCsvFile.EndOfStream)
+            using (var dataInCsvFile = new StreamReader(csvFilePath))
             {
-                string eachRow = dataInCsvFile.ReadLine();
-                allDatesandTime.Add(SplitCsvFileAndReturnData.SplitCsvFileAndReturnDateAndTime(eachRow));
-            }
+                dataInCsvFile.ReadLine();
 
-            IsDataRetrieved = true;
-            return allDatesandTime;
+                while (!dataInCsvFile.EndOfStream)
+                {
+                    string eachRow = dataInCsvFile.ReadLine();
+                    allDatesandTime.Add(SplitCsvFileAndReturnData.SplitCsvFileAndReturnDateAndTime(eachRow));
+                }
+
+                IsDataRetrieved = true;
+                return allDatesandTime;
+            }
         }
     }
 }

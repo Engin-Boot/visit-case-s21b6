@@ -21,6 +21,7 @@ namespace Sender
 
         public static void Main()
         {
+            //Change generic names eg: dateAndTimeFootfall
             var dateAndTimeList = ExtractDataFromCsv.ExtractDateAndTime();
             PrintData(dateAndTimeList);
         }
